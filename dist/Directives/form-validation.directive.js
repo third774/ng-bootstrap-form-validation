@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var FormValidationDirective = (function () {
@@ -36,27 +35,27 @@ var FormValidationDirective = (function () {
     };
     FormValidationDirective.prototype.ngOnInit = function () {
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', forms_1.FormGroup)
+    ], FormValidationDirective.prototype, "formGroup", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], FormValidationDirective.prototype, "validSubmit", void 0);
+    __decorate([
+        core_1.HostListener("submit"), 
+        __metadata('design:type', Function), 
+        __metadata('design:paramtypes', []), 
+        __metadata('design:returntype', void 0)
+    ], FormValidationDirective.prototype, "onSubmit", null);
+    FormValidationDirective = __decorate([
+        core_1.Directive({
+            selector: "form"
+        }), 
+        __metadata('design:paramtypes', [])
+    ], FormValidationDirective);
     return FormValidationDirective;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", forms_1.FormGroup)
-], FormValidationDirective.prototype, "formGroup", void 0);
-__decorate([
-    core_1.Output(),
-    __metadata("design:type", Object)
-], FormValidationDirective.prototype, "validSubmit", void 0);
-__decorate([
-    core_1.HostListener("submit"),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], FormValidationDirective.prototype, "onSubmit", null);
-FormValidationDirective = __decorate([
-    core_1.Directive({
-        selector: "form"
-    }),
-    __metadata("design:paramtypes", [])
-], FormValidationDirective);
 exports.FormValidationDirective = FormValidationDirective;
 //# sourceMappingURL=form-validation.directive.js.map

@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var forms_1 = require("@angular/forms");
 var FormGroupComponent = (function () {
@@ -102,33 +101,31 @@ var FormGroupComponent = (function () {
         enumerable: true,
         configurable: true
     });
+    __decorate([
+        core_1.ContentChildren(forms_1.FormControlName), 
+        __metadata('design:type', core_1.QueryList)
+    ], FormGroupComponent.prototype, "FormControlNames", void 0);
+    __decorate([
+        core_1.HostBinding('class.has-error'), 
+        __metadata('design:type', Object)
+    ], FormGroupComponent.prototype, "hasErrors", null);
+    __decorate([
+        core_1.HostBinding('class.has-success'), 
+        __metadata('design:type', Object)
+    ], FormGroupComponent.prototype, "hasSuccess", null);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Array)
+    ], FormGroupComponent.prototype, "customErrorMessages", void 0);
+    FormGroupComponent = __decorate([
+        core_1.Component({
+            selector: '.form-group',
+            templateUrl: './form-group-component.html',
+            styleUrls: ['./form-group-component.css']
+        }), 
+        __metadata('design:paramtypes', [core_1.ElementRef])
+    ], FormGroupComponent);
     return FormGroupComponent;
 }());
-__decorate([
-    core_1.ContentChildren(forms_1.FormControlName),
-    __metadata("design:type", core_1.QueryList)
-], FormGroupComponent.prototype, "FormControlNames", void 0);
-__decorate([
-    core_1.HostBinding('class.has-error'),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], FormGroupComponent.prototype, "hasErrors", null);
-__decorate([
-    core_1.HostBinding('class.has-success'),
-    __metadata("design:type", Object),
-    __metadata("design:paramtypes", [])
-], FormGroupComponent.prototype, "hasSuccess", null);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Array)
-], FormGroupComponent.prototype, "customErrorMessages", void 0);
-FormGroupComponent = __decorate([
-    core_1.Component({
-        selector: '.form-group',
-        templateUrl: './form-group-component.html',
-        styleUrls: ['./form-group-component.css']
-    }),
-    __metadata("design:paramtypes", [core_1.ElementRef])
-], FormGroupComponent);
 exports.FormGroupComponent = FormGroupComponent;
 //# sourceMappingURL=form-group-component.js.map
