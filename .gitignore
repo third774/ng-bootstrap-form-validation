@@ -1,1 +1,6 @@
+# Node packages
 node_modules
+
+# Editor folders
+.vscode
+.idea
