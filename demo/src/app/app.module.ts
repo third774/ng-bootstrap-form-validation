@@ -2,7 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
-import { AngularBootstrapFormValidationModule } from "ng-bootstrap-form-validation";
+import { NgBootstrapFormValidationModule } from "ng-bootstrap-form-validation";
 
 import { AppComponent } from "./app.component";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
@@ -21,7 +21,7 @@ import { CustomErrorsComponent } from './custom-errors/custom-errors.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularBootstrapFormValidationModule,
+    NgBootstrapFormValidationModule,
     HttpModule,
     AppRoutesModule
   ],

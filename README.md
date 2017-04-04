@@ -16,7 +16,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 
-import { AngularBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import { AngularBootstrapFormValidationModule } from 'ng-bootstrap-form-validati
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularBootstrapFormValidationModule
+    NgBootstrapFormValidationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
