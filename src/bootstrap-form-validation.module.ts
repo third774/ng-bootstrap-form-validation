@@ -16,8 +16,8 @@ import {CommonModule} from "@angular/common";
     FormGroupComponent
   ]
 })
-export class AngularBootstrapFormValidationModule {
+export class NgBootstrapFormValidationModule {
   static forRoot(): ModuleWithProviders {
-    return {ngModule: AngularBootstrapFormValidationModule, providers: []};
+    return {ngModule: NgBootstrapFormValidationModule, providers: []};
   }
 }

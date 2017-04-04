@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReactiveFormDemoComponent } from './reactive-form-demo.component';
+import { CustomErrorsComponent } from './custom-errors.component';
 
-describe('ReactiveFormDemoComponent', () => {
-  let component: ReactiveFormDemoComponent;
-  let fixture: ComponentFixture<ReactiveFormDemoComponent>;
+describe('CustomErrorsComponent', () => {
+  let component: CustomErrorsComponent;
+  let fixture: ComponentFixture<CustomErrorsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReactiveFormDemoComponent ]
+      declarations: [ CustomErrorsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReactiveFormDemoComponent);
+    fixture = TestBed.createComponent(CustomErrorsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

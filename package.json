@@ -1,10 +1,14 @@
 {
   "name": "ng-bootstrap-form-validation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "scripts": {
     "build": "npm run clean && ngc -p ./tsconfig.aot.json",
     "clean": "rimraf ./dist"
+  },
+  "repository": {
+    "type": "mit",
+    "url": "https://github.com/third774/ng-bootstrap-form-validation"
   },
   "private": false,
   "dependencies": {

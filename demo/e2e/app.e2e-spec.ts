@@ -1,10 +1,10 @@
-import { BootstrapFormValidationPage } from './app.po';
+import { TestAppPage } from './app.po';
 
-describe('bootstrap-form-validation App', () => {
-  let page: BootstrapFormValidationPage;
+describe('test-app App', () => {
+  let page: TestAppPage;
 
   beforeEach(() => {
-    page = new BootstrapFormValidationPage();
+    page = new TestAppPage();
   });
 
   it('should display message saying app works', () => {

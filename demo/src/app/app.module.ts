@@ -1,25 +1,29 @@
-import {BrowserModule} from "@angular/platform-browser";
-import {NgModule} from "@angular/core";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpModule } from "@angular/http";
+import { AngularBootstrapFormValidationModule } from "ng-bootstrap-form-validation";
 
-import {AppComponent} from "./app.component";
-import {ReactiveFormDemoComponent} from "./reactive-form-demo/reactive-form-demo.component";
-import {AppRoutes} from "./app-routing.module";
-import {NavBarComponent} from "./nav-bar/nav-bar.component";
-import {AngularBootstrapFormValidationModule} from "../../../dist/src/bootstrap-form-validation.module";
+import { AppComponent } from "./app.component";
+import { NavBarComponent } from "./nav-bar/nav-bar.component";
+import { BasicExampleComponent } from './basic-example/basic-example.component';
+import { AppRoutesModule } from "app/app-routing.module";
+import { CustomErrorsComponent } from './custom-errors/custom-errors.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ReactiveFormDemoComponent,
-    NavBarComponent
+    NavBarComponent,
+    BasicExampleComponent,
+    CustomErrorsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutes,
     FormsModule,
+    ReactiveFormsModule,
     AngularBootstrapFormValidationModule,
-    ReactiveFormsModule
+    HttpModule,
+    AppRoutesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class BootstrapFormValidationPage {
+export class TestAppPage {
   navigateTo() {
     return browser.get('/');
   }
