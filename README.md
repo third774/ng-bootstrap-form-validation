@@ -40,6 +40,12 @@ export class AppModule {
 ### Basics
 ng-bootstrap-form-validation works by using the `form-group` Bootstrap class on your divs as component selector, and projecting the content into a component which handles form validation feedback for you.
 
+The `has-error` and `has-success` classes are automatically added or removed to your `form-group` based on whether or not the input is valid, and is both `touched` and `dirty`.
+
+Validation messages appear when an input is `dirty`, `touched`, and has errors.
+
+Submitting the form will iterate over all controls and mark them as `touched` and `dirty` to provide feedback to the user. Additionally, there is a `validSubmit` event on forms which you can bind to instead of `submit` to only fire off when the form is actually valid.
+
 Built-in Angular validators such as `Validators.required` work out of the box without any additional markup in your template.
 
 `basic-example.component.ts`
