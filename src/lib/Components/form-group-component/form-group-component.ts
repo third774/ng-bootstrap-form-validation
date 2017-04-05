@@ -19,8 +19,6 @@ export class FormGroupComponent {
     return label ? label.textContent : 'This field';
   }
 
-  labelToken = "%%LABEL%%";
-
   @HostBinding('class.has-error') get hasErrors() {
     return this.FormControlNames.some(c => !c.valid && c.dirty && c.touched);
   };
@@ -46,11 +44,7 @@ export class FormGroupComponent {
       Object.keys(control.errors).forEach(key => {
         const error = this.errorMessages.find(error => error.error === key);
         if (!error) return;
-        if (error.format) {
-          messages.push(error.format(control.errors[key], this.label).replace(this.labelToken, this.label));
-        } else {
-          messages.push(error.message.replace(this.labelToken, this.label));
-        }
+        messages.push(error.format(this.label, control.errors[key]));
       });
     });
     return messages;
@@ -59,23 +53,19 @@ export class FormGroupComponent {
   defaultErrorMessages: ErrorMessage[] = [
     {
       error: 'required',
-      message: `${this.labelToken} is required`
+      format: label => `${label} is required`
     },
     {
       error: 'pattern',
-      message: `${this.labelToken} is invalid`
+      format: label => `${label} is invalid`
     },
     {
       error: 'minlength',
-      format: (error, label) => {
-        return `${this.labelToken} must be at least ${error.requiredLength} characters`;
-      }
+      format: (label, error) => `${label} must be at least ${error.requiredLength} characters`
     },
     {
       error: 'maxlength',
-      format: (error, label) => {
-        return `${this.labelToken} must be no longer than ${error.requiredLength} characters`;
-      }
+      format: (label, error) => `${label} must be no longer than ${error.requiredLength} characters`
     }
   ];
 
