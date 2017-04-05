@@ -1,6 +1,6 @@
-import { Route, RouterModule } from '@angular/router';
-import { BasicExampleComponent } from "./basic-example/basic-example.component";
-import { CustomErrorsComponent } from "./custom-errors/custom-errors.component";
+import {Route, RouterModule} from "@angular/router";
+import {BasicExampleComponent} from "./basic-example/basic-example.component";
+import {CustomErrorsComponent} from "./custom-errors/custom-errors.component";
 
 const APP_ROUTES: Route[] = [
   {
@@ -16,4 +16,4 @@ const APP_ROUTES: Route[] = [
   }
 ];
 
-export const AppRoutesModule = RouterModule.forRoot(APP_ROUTES);
+export const AppRoutesModule = RouterModule.forRoot(APP_ROUTES, {useHash: true});

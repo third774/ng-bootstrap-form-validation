@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "build": "npm run clean && ngc -p ./tsconfig.aot.json",
+    "ghp-build": "ng build --prod --base-href \"https://third774.github.io/ng-bootstrap-form-validation/\"",
     "clean": "rimraf ./dist"
   },
   "repository": {
