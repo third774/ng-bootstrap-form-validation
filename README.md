@@ -2,6 +2,8 @@
 
 An Angular module that makes Bootstrap form validation easy.
 
+Check out [the demo](third774.github.io/ng-bootstrap-form-validation)!
+
 ## Install
 
 1) Install by running
