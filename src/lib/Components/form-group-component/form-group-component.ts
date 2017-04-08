@@ -1,6 +1,7 @@
 import {Component, ContentChildren, ElementRef, HostBinding, Input, QueryList} from "@angular/core";
 import {FormControlName} from "@angular/forms";
 import {ErrorMessage} from "../../Models/ErrorMessage";
+import {ErrorMessageService} from "../../Services/error-message.service";
 
 @Component({
   selector: '.form-group',
@@ -11,7 +12,19 @@ export class FormGroupComponent {
 
   @ContentChildren(FormControlName) FormControlNames: QueryList<FormControlName>;
 
-  constructor(private elRef: ElementRef) {
+  @Input() customErrorMessages: ErrorMessage[];
+
+  @Input() validationDisabled: boolean = false;
+
+  @HostBinding('class.has-error') get hasErrors() {
+    return this.FormControlNames.some(c => !c.valid && c.dirty && c.touched) && !this.validationDisabled;
+  };
+
+  @HostBinding('class.has-success') get hasSuccess() {
+    return !this.FormControlNames.some(c => !c.valid) && this.FormControlNames.some(c => c.dirty && c.touched) && !this.validationDisabled;
+  };
+
+  constructor(private elRef: ElementRef, private errorMessageService: ErrorMessageService) {
   }
 
   get label() {
@@ -19,27 +32,17 @@ export class FormGroupComponent {
     return label ? label.textContent : 'This field';
   }
 
-  @HostBinding('class.has-error') get hasErrors() {
-    return this.FormControlNames.some(c => !c.valid && c.dirty && c.touched);
-  };
-
-  @HostBinding('class.has-success') get hasSuccess() {
-    return !this.FormControlNames.some(c => !c.valid) && this.FormControlNames.some(c => c.dirty && c.touched);
-  };
-
   get isDirtyAndTouched() {
     return this.FormControlNames.some(c => c.dirty && c.touched);
   }
 
-  @Input() customErrorMessages: ErrorMessage[];
-
   get errorMessages(): ErrorMessage[] {
-    return this.customErrorMessages ? this.customErrorMessages.concat(this.defaultErrorMessages) : this.defaultErrorMessages;
+    return this.customErrorMessages ? this.customErrorMessages.concat(this.errorMessageService.errorMessages) : this.errorMessageService.errorMessages;
   };
 
   get messages(): string[] {
     const messages = [];
-    if (!this.isDirtyAndTouched) return messages;
+    if (!this.isDirtyAndTouched || this.validationDisabled) return messages;
     this.FormControlNames.filter(c => !c.valid).forEach(control => {
       Object.keys(control.errors).forEach(key => {
         const error = this.errorMessages.find(error => error.error === key);
@@ -49,24 +52,5 @@ export class FormGroupComponent {
     });
     return messages;
   }
-
-  defaultErrorMessages: ErrorMessage[] = [
-    {
-      error: 'required',
-      format: label => `${label} is required`
-    },
-    {
-      error: 'pattern',
-      format: label => `${label} is invalid`
-    },
-    {
-      error: 'minlength',
-      format: (label, error) => `${label} must be at least ${error.requiredLength} characters`
-    },
-    {
-      error: 'maxlength',
-      format: (label, error) => `${label} must be no longer than ${error.requiredLength} characters`
-    }
-  ];
 
 }
