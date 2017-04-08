@@ -1,6 +1,6 @@
 {
   "name": "ng-bootstrap-form-validation",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "scripts": {
     "build": "npm run clean && ngc -p ./tsconfig.aot.json",
