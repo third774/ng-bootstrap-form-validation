@@ -10,7 +10,7 @@ Check out [the demo](https://third774.github.io/ng-bootstrap-form-validation)!
 
 `npm install ng-bootstrap-form-validation --save`
 
-2) Add `NgBootstrapFormValidationModule` to your `app.module.ts` declaration:
+2) Add `NgBootstrapFormValidationModule.forRoot()` to your `app.module.ts` imports:
 
 ```
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,7 +28,7 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgBootstrapFormValidationModule
+    NgBootstrapFormValidationModule.forRoot() 
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -53,9 +53,8 @@ Built-in Angular validators such as `Validators.required` work out of the box wi
 `basic-example.component.ts`
 
 ```
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ErrorMessage } from "ng-bootstrap-form-validation";
+import {Component, OnInit} from "@angular/core";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-basic-example',
@@ -64,12 +63,10 @@ import { ErrorMessage } from "ng-bootstrap-form-validation";
 })
 export class BasicExampleComponent implements OnInit {
 
-  constructor() { }
-
-  public form: FormGroup;
+  formGroup: FormGroup;
 
   ngOnInit() {
-    this.form = new FormGroup({
+    this.formGroup = new FormGroup({
       Email: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
@@ -77,44 +74,138 @@ export class BasicExampleComponent implements OnInit {
       Password: new FormControl('', [
         Validators.required,
         Validators.minLength(8),
-        Validators.maxLength(26)
+        Validators.maxLength(20)
       ])
     });
   }
 
   onSubmit() {
-    console.log(this.form);
+    console.log(this.formGroup);
   }
-}
 
+  onReset() {
+    this.formGroup.reset();
+  }
+
+}
 ```
 
 `basic-example.component.html`
-
-
 ```
-<form [formGroup]="form" (submit)="onSubmit()">
-    <div class="form-group">
-        <label class="control-label" for="exampleInputEmail1">Email</label>
-        <input type="text"
-               class="form-control"
-               id="exampleInputEmail1"
-               placeholder="Email"
-               formControlName="Email">
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password"
-               class="form-control"
-               id="exampleInputPassword1"
-               placeholder="Password" formControlName="Password">
-        </div>
-    <button type="submit" class="btn btn-primary pull-right">Submit</button>
-</form>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="control-label">Email</label>
+        <input type="text" class="form-control" formControlName="Email">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Password</label>
+        <input type="password" class="form-control" formControlName="Password">
+      </div>
+      <button class="btn btn-default" type="button" (click)="onReset()">Reset</button>
+      <button class="btn btn-primary pull-right" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
 ```
 
 ### Custom Messages
-Documentation to follow...
+
+Optionally, you can pass an `ErrorMessage` array into the `.forRoot()` method in your `app.module.ts` to provide custom errors across your entire app. The `ErrorMessage` interface looks like this:
+
+```
+/**
+ * Interface for creating validation messages
+ */
+export interface ErrorMessage {
+  /**
+   * The error key to look for on the FormControl.errors object
+   */
+  error: string;
+  /**
+   * The message string function to create the validation message to be displayed.
+   * @param {string} label The text from the first <label> tag found within the .form-group
+   * @param {*} error The value accessed from FormControl.errors[error] using ErrorMessage.error as the key
+   */
+  format?: (label?: string, error?: any) => string;
+}
+```
+
+In addition to providing custom errors at the top level using the `.forRoot()` method,
+you can provide custom error messages to a specific control by binding to the
+`customErrorMessages` directive on the `.form-group` element. Modifying the basic 
+example above, we can provide a one time custom error message to a specific `.form-group`
+
+`custom-error-example.component.ts`
+```
+import {Component, OnInit} from "@angular/core";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {ErrorMessage} from "../../lib/Models/ErrorMessage";
+
+@Component({
+  selector: 'app-custom-errors',
+  templateUrl: './custom-errors.component.html',
+  styleUrls: ['./custom-errors.component.css']
+})
+export class CustomErrorsComponent implements OnInit {
+
+  formGroup: FormGroup;
+
+  customErrorMessages: ErrorMessage[] = [
+    {
+      error: 'required',
+      format: (label, error) => `${label.toUpperCase()} IS DEFINITELY REQUIRED!`
+    }, {
+      error: 'pattern',
+      format: (label, error) => `${label.toUpperCase()} DOESN'T LOOK RIGHT...`
+    }
+  ];
+
+  ngOnInit() {
+    this.formGroup = new FormGroup({
+      Email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+      ]),
+      Password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20)
+      ])
+    });
+  }
+
+  onSubmit() {
+    console.log(this.formGroup);
+  }
+
+  onReset() {
+    this.formGroup.reset();
+  }
+
+}
+```
+
+`custom-error-example.component.html`
+```
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
+      <div class="form-group" [customErrorMessages]="customErrorMessages">
+        <label class="control-label">Email</label>
+        <input type="text" class="form-control" formControlName="Email">
+      </div>
+      <div class="form-group">
+        <label class="control-label">Password</label>
+        <input type="password" class="form-control" formControlName="Password">
+      </div>
+      <button class="btn btn-default" type="button" (click)="onReset()">Reset</button>
+      <button class="btn btn-primary pull-right" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+```
 
 ## Roadmap
 * Add out of the box support for `ng2-validation` validators
