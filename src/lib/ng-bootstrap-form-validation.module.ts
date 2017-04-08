@@ -4,6 +4,7 @@ import {FormValidationDirective} from "./Directives/form-validation.directive";
 import {CommonModule} from "@angular/common";
 import {ErrorMessage} from "./Models/ErrorMessage";
 import {ErrorMessageService} from "./Services/error-message.service";
+import {CUSTOM_ERROR_MESSAGES} from "./Tokens/tokens";
 
 @NgModule({
   declarations: [
@@ -24,12 +25,22 @@ import {ErrorMessageService} from "./Services/error-message.service";
 export class NgBootstrapFormValidationModule {
   static forRoot(customErrorMessages?: ErrorMessage[]): ModuleWithProviders {
     return {
-      ngModule: NgBootstrapFormValidationModule, providers: [
+      ngModule: NgBootstrapFormValidationModule,
+      providers: [
         {
           provide: ErrorMessageService,
-          useValue: new ErrorMessageService(customErrorMessages)
+          useFactory: errorMessageService,
+          deps: [CUSTOM_ERROR_MESSAGES]
+        },
+        {
+          provide: CUSTOM_ERROR_MESSAGES,
+          useValue: customErrorMessages
         }
       ]
     };
   }
+}
+
+export function errorMessageService(customErrorMessages?: ErrorMessage[]) {
+  return new ErrorMessageService(customErrorMessages);
 }
