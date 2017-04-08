@@ -12,7 +12,7 @@ Check out [the demo](https://third774.github.io/ng-bootstrap-form-validation)!
 
 2) Add `NgBootstrapFormValidationModule.forRoot()` to your `app.module.ts` imports:
 
-```
+```ts
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule , ReactiveFormsModule} from '@angular/forms';
@@ -52,7 +52,7 @@ Built-in Angular validators such as `Validators.required` work out of the box wi
 
 `basic-example.component.ts`
 
-```
+```ts
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
@@ -91,7 +91,7 @@ export class BasicExampleComponent implements OnInit {
 ```
 
 `basic-example.component.html`
-```
+```html
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
@@ -114,7 +114,7 @@ export class BasicExampleComponent implements OnInit {
 
 Optionally, you can pass an `ErrorMessage` array into the `.forRoot()` method in your `app.module.ts` to provide custom errors across your entire app. The `ErrorMessage` interface looks like this:
 
-```
+```ts
 /**
  * Interface for creating validation messages
  */
@@ -138,7 +138,7 @@ you can provide custom error messages to a specific control by binding to the
 example above, we can provide a one time custom error message to a specific `.form-group`
 
 `custom-error-example.component.ts`
-```
+```ts
 import {Component, OnInit} from "@angular/core";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ErrorMessage} from "../../lib/Models/ErrorMessage";
@@ -188,7 +188,7 @@ export class CustomErrorsComponent implements OnInit {
 ```
 
 `custom-error-example.component.html`
-```
+```html
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <form [formGroup]="formGroup" (validSubmit)="onSubmit()">
