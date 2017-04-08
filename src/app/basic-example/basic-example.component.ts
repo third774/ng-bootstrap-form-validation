@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { basicExampleComponentCode } from './basic-example.component.code';
+import {Component, OnInit} from "@angular/core";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-basic-example',
@@ -9,12 +8,7 @@ import { basicExampleComponentCode } from './basic-example.component.code';
 })
 export class BasicExampleComponent implements OnInit {
 
-  public basicExampleComponentCode = basicExampleComponentCode;
-
   formGroup: FormGroup;
-
-  constructor() {
-  }
 
   ngOnInit() {
     this.formGroup = new FormGroup({

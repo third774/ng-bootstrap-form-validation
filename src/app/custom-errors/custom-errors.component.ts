@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ErrorMessage} from "../../lib/Models/ErrorMessage";
 
 @Component({
@@ -11,20 +11,27 @@ export class CustomErrorsComponent implements OnInit {
 
   formGroup: FormGroup;
 
-  customErrors: ErrorMessage[] = [
+  customErrorMessages: ErrorMessage[] = [
     {
-      error: 'maxNumber',
-      format: (label, error: MaxNumberError) =>
-        `${label} must be below ${error.maxNumber}. Actual value: ${error.actualNumber}`
+      error: 'required',
+      format: (label, error) => `${label.toUpperCase()} IS DEFINITELY REQUIRED!`
+    }, {
+      error: 'pattern',
+      format: (label, error) => `${label.toUpperCase()} DOESN'T LOOK RIGHT...`
     }
   ];
 
-  constructor() {
-  }
-
   ngOnInit() {
     this.formGroup = new FormGroup({
-      Price: new FormControl('', [maxNumber(100), Validators.required])
+      Email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+      ]),
+      Password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(20)
+      ])
     });
   }
 
@@ -36,28 +43,4 @@ export class CustomErrorsComponent implements OnInit {
     this.formGroup.reset();
   }
 
-}
-
-function maxNumber(num: number): ValidatorFn {
-  return function (control: FormControl) {
-    if (control.value === "" || isNaN(control.value)) return null;
-    const actualValue = parseInt(control.value);
-    if (actualValue > num) {
-      const error: MaxNumberError = {
-        maxNumber: num,
-        actualNumber: actualValue
-      };
-      return {
-        maxNumber: error
-      };
-      ;
-    } else {
-      return null;
-    }
-  }
-}
-
-interface MaxNumberError {
-  maxNumber: number;
-  actualNumber: number;
 }
