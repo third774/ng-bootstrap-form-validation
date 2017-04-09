@@ -14,7 +14,7 @@ export class BasicExampleComponent implements OnInit {
     this.formGroup = new FormGroup({
       Email: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+        Validators.email
       ]),
       Password: new FormControl('', [
         Validators.required,
