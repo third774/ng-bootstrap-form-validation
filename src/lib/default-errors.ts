@@ -16,5 +16,13 @@ export const DEFAULT_ERRORS: ErrorMessage[] = [
   {
     error: 'maxlength',
     format: (label, error) => `${label} must be no longer than ${error.requiredLength} characters`
+  },
+  {
+    error: 'requiredTrue',
+    format: (label, error) => `${label} is required`
+  },
+  {
+    error: 'email',
+    format: (label, error) => `Invalid email address`
   }
 ];
