@@ -1,6 +1,6 @@
 {
   "name": "ng-bootstrap-form-validation",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "README, an Angular library",
   "main": "dist/ng-bootstrap-form-validation.bundle.js",
   "scripts": {

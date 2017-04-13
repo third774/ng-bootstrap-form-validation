@@ -37,9 +37,13 @@ export class AppModule {
 }
 ```
 
-## Usage
+## Basics
 
-### Basics
+### Default Errors
+
+By default, the validators found on the `Validators` class from `@angular/forms` module are handled for you out of the box. All you need to do is import the module.
+
+### Usage
 ng-bootstrap-form-validation works by using the `form-group` Bootstrap class on your divs as component selector, and projecting the content into a component which handles form validation feedback for you.
 
 The `has-error` and `has-success` classes are automatically added or removed to your `form-group` based on whether or not the input is valid, and is both `touched` and `dirty`.
@@ -110,32 +114,69 @@ export class BasicExampleComponent implements OnInit {
 </div>
 ```
 
-### Custom Messages
+## Custom Error Messages
 
-Optionally, you can pass an `ErrorMessage` array into the `.forRoot()` method in your `app.module.ts` to provide custom errors across your entire app. The `ErrorMessage` interface looks like this:
+### Global Custom Errors
 
+Optionally, you can pass an `ErrorMessage` array into the `.forRoot()` method in your `app.module.ts` to provide custom errors across your entire app. In order for this to be AOT compatable, the function definitions **must** be exported. see below for an example
+
+`custom-errors.ts`
 ```ts
-/**
- * Interface for creating validation messages
- */
-export interface ErrorMessage {
-  /**
-   * The error key to look for on the FormControl.errors object
-   */
-  error: string;
-  /**
-   * The message string function to create the validation message to be displayed.
-   * @param {string} label The text from the first <label> tag found within the .form-group
-   * @param {*} error The value accessed from FormControl.errors[error] using ErrorMessage.error as the key
-   */
-  format?: (label?: string, error?: any) => string;
+import {ErrorMessage} from "ng-bootstrap-form-validation";
+
+export const CUSTOM_ERRORS: ErrorMessage[] = [
+  {
+    error: "required",
+    format: requiredFormat
+  }, {
+    error: "email",
+    format: emailFormat
+  }
+];
+
+export function requiredFormat(label: string, error: any): string {
+  return `${label} IS MOST DEFINITELY REQUIRED!`;
+}
+
+export function emailFormat(label: string, error: any): string {
+  return `${label} doesn't look like a valid email address.`;
 }
 ```
+
+`app.module.ts`
+```ts
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
+import {NgBootstrapFormValidationModule} from "ng-bootstrap-form-validation";
+import {AppComponent} from "./app.component";
+import {CUSTOM_ERRORS} from "./custom-errors";
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgBootstrapFormValidationModule.forRoot(CUSTOM_ERRORS),
+    HttpModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}
+```
+
+### Form Control Specific Custom Errors
 
 In addition to providing custom errors at the top level using the `.forRoot()` method,
 you can provide custom error messages to a specific control by binding to the
 `customErrorMessages` directive on the `.form-group` element. Modifying the basic 
-example above, we can provide a one time custom error message to a specific `.form-group`
+example above, we can provide a one time custom error message to a specific `.form-group`. Unline the global custom error messages, these do not need to be individually exported.
 
 `custom-error-example.component.ts`
 ```ts
