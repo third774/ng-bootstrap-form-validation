@@ -52,8 +52,6 @@ Validation messages appear when an input is `dirty`, `touched`, and has errors.
 
 Submitting the form will iterate over all controls and mark them as `touched` and `dirty` to provide feedback to the user. Additionally, there is a `validSubmit` event on forms which you can bind to instead of `submit` to only fire off when the form is actually valid.
 
-Built-in Angular validators such as `Validators.required` work out of the box without any additional markup in your template.
-
 `basic-example.component.ts`
 
 ```ts
@@ -176,7 +174,7 @@ export class AppModule {
 In addition to providing custom errors at the top level using the `.forRoot()` method,
 you can provide custom error messages to a specific control by binding to the
 `customErrorMessages` directive on the `.form-group` element. Modifying the basic 
-example above, we can provide a one time custom error message to a specific `.form-group`. Unline the global custom error messages, these do not need to be individually exported.
+example above, we can provide a one time custom error message to a specific `.form-group`. Unlike the global custom error messages, these do not need to be individually exported.
 
 `custom-error-example.component.ts`
 ```ts
