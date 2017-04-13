@@ -9,7 +9,6 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "lib": ["es2015", "dom"],
-        "mapRoot": "./",
         "module": "es2015",
         "moduleResolution": "node",
         "outDir": "./dist",
@@ -20,7 +19,7 @@
         ]
     },
     "files": [
-        "./src/index.ts"
+        "./build/index.ts"
     ],
     "awesomeTypescriptLoaderOptions": {
         "forkChecker": true
