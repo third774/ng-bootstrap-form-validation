@@ -268,7 +268,7 @@ var FormGroupComponent = (function () {
     Object.defineProperty(FormGroupComponent.prototype, "label", {
         get: function () {
             var label = this.elRef.nativeElement.querySelector('label');
-            return label ? label.textContent : 'This field';
+            return label && label.textContent ? label.textContent.trim() : 'This field';
         },
         enumerable: true,
         configurable: true

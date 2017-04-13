@@ -31,7 +31,7 @@ export class FormGroupComponent {
 
   get label() {
     const label = this.elRef.nativeElement.querySelector('label');
-    return label ? label.textContent : 'This field';
+    return label && label.textContent ? label.textContent.trim() : 'This field';
   }
 
   get isDirtyAndTouched() {
