@@ -174,7 +174,7 @@ export class AppModule {
 In addition to providing custom errors at the top level using the `.forRoot()` method,
 you can provide custom error messages to a specific control by binding to the
 `customErrorMessages` directive on the `.form-group` element. Modifying the basic 
-example above, we can provide a one time custom error message to a specific `.form-group`. Unlike the global custom error messages, these do not need to be individually exported.
+example above, we can provide a one time custom error message to a specific `.form-group`. Unlike the global custom error messages, these functions do not need to be individually exported.
 
 `custom-error-example.component.ts`
 ```ts
