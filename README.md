@@ -6,9 +6,7 @@ Check out [the demo](https://third774.github.io/ng-bootstrap-form-validation)!
 
 ## Install
 
-1) Install by running
-
-`npm install ng-bootstrap-form-validation --save`
+1) Install by running `npm install ng-bootstrap-form-validation --save`
 
 2) Add `NgBootstrapFormValidationModule.forRoot()` to your `app.module.ts` imports:
 
