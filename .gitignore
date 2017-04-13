@@ -1,4 +1,5 @@
 coverage
+build
 dist/src
 debug.log
 node_modules
