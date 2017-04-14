@@ -18,9 +18,9 @@
     "tagVersion": "np",
     "test": "node ./tasks/test"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": ["angular", "bootstrap", "form", "validation"],
+  "author": "Kevin Kipp",
+  "license": "MIT",
   "devDependencies": {
     "@angular/compiler-cli": "^4.0.0",
     "@angular/forms": "^4.0.0",
