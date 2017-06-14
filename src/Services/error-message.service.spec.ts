@@ -1,15 +1,42 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from "@angular/core/testing";
 
-import { ErrorMessageService } from './error-message.service';
+import {ErrorMessageService} from "./error-message.service";
+import {CUSTOM_ERROR_MESSAGES} from "../Tokens/tokens";
+import {errorMessageService} from "../ng-bootstrap-form-validation.module";
 
 describe('ErrorMessageService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [ErrorMessageService]
-    });
-  });
+    const customRequiredErrorMessage = {
+        error: 'required',
+        format: function (label, error) {
+            return `${label} IS DEFINITELY REQUIRED!!!`;
+        }
+    };
 
-  it('should ...', inject([ErrorMessageService], (service: ErrorMessageService) => {
-    expect(service).toBeTruthy();
-  }));
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [
+                {
+                    provide: ErrorMessageService,
+                    useFactory: errorMessageService,
+                    deps: [CUSTOM_ERROR_MESSAGES]
+                },
+                {
+                    provide: CUSTOM_ERROR_MESSAGES,
+                    useValue: [
+                        customRequiredErrorMessage
+                    ]
+                }
+            ]
+        });
+    });
+
+    it('should inject ErrorMessageService', inject([ErrorMessageService], (service: ErrorMessageService) => {
+        expect(service).toBeTruthy();
+    }));
+
+    describe('errorMessages()', () => {
+        it('should return custom errors before default errors', inject([ErrorMessageService], (service: ErrorMessageService) => {
+            expect(service.errorMessages[0]).toEqual(customRequiredErrorMessage);
+        }));
+    });
 });
