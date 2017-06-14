@@ -14,7 +14,7 @@ export class FormGroupComponent {
 
   @ContentChildren(FormControlName) FormControlNames: QueryList<FormControlName>;
 
-  @Input() customErrorMessages: ErrorMessage[];
+  @Input() customErrorMessages: ErrorMessage[] = [];
 
   @Input() validationDisabled: boolean = false;
 
@@ -39,7 +39,7 @@ export class FormGroupComponent {
   }
 
   get errorMessages(): ErrorMessage[] {
-    return this.customErrorMessages ? this.customErrorMessages.concat(this.errorMessageService.errorMessages) : this.errorMessageService.errorMessages;
+    return [...this.customErrorMessages, ...this.errorMessageService.errorMessages];
   };
 
   get messages(): string[] {
