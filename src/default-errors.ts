@@ -24,5 +24,13 @@ export const DEFAULT_ERRORS: ErrorMessage[] = [
   {
     error: 'email',
     format: (label, error) => `Invalid email address`
+  },
+  {
+    error: 'max',
+    format: (label, error) => `${label} must be no greater than ${error.max}`
+  },
+  {
+    error: 'min',
+    format: (label, error) => `${label} must be no less than ${error.min}`
   }
 ];
