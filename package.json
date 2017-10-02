@@ -3,7 +3,12 @@
   "version": "1.0.5",
   "description": "An Angular module that makes Bootstrap form validation easy.",
   "license": "MIT",
-  "keywords": ["angular", "bootstrap", "form", "validation"],
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "form",
+    "validation"
+  ],
   "author": "Kevin Kipp",
   "scripts": {
     "ng": "ng",
