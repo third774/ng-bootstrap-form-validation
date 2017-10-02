@@ -1,1 +1,0 @@
-D:\bitbucket\personal\ng-bootstrap-form-validation\node_modules\angular-librarian\commands\initial\templates\tasks/update-sourcemaps.js
