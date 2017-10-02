@@ -18,7 +18,12 @@
     "tagVersion": "np",
     "test": "node ./tasks/test"
   },
-  "keywords": ["angular", "bootstrap", "form", "validation"],
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "form",
+    "validation"
+  ],
   "author": "Kevin Kipp",
   "license": "MIT",
   "devDependencies": {
