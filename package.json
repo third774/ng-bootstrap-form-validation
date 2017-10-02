@@ -1,6 +1,6 @@
 {
   "name": "ng-bootstrap-form-validation",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "An Angular module that makes Bootstrap form validation easy.",
   "license": "MIT",
   "keywords": [
@@ -17,8 +17,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "packagr": "ng-packagr -p ng-package.json",
-    "publish": "npm publish dist"
+    "packagr": "ng-packagr -p ng-package.json"
   },
   "private": false,
   "dependencies": {
