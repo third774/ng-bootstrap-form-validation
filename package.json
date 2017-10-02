@@ -10,6 +10,9 @@
     "validation"
   ],
   "author": "Kevin Kipp",
+  "repository": {
+    "url": "https://github.com/third774/ng-bootstrap-form-validation"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
