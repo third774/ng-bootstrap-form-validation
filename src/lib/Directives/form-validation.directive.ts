@@ -10,6 +10,10 @@ export class FormValidationDirective implements OnInit {
   @Output() validSubmit = new EventEmitter<any>();
 
   @HostListener("submit") onSubmit() {
+    if (!this.formGroup) {
+      return;
+    }
+
     this.markAsTouchedAndDirty(this.formGroup);
     if (this.formGroup.valid) {
       this.validSubmit.emit(this.formGroup.value);

@@ -14,7 +14,9 @@ export class DefaultErrorsDemoComponent implements OnInit {
     pattern: new FormControl('', Validators.pattern(/foobar/)),
     minValue: new FormControl(0, Validators.min(10)),
     maxValue: new FormControl(10, Validators.max(5))
-  })
+  });
+  title: string;
+  description: string;
 
   constructor() { }
 
@@ -25,11 +27,21 @@ export class DefaultErrorsDemoComponent implements OnInit {
     console.log(this.formGroup.value);
   }
 
+  handleSubmitWithoutFormGroup() {
+    console.log('Form without group is submitted.');
+    console.log({title: this.title, description: this.description});
+  }
+
   handleReset() {
     this.formGroup.reset({
       minValue: 0,
       maxValue: 10
     });
+  }
+
+  handleResetWithoutFormGroup() {
+    this.title = '';
+    this.description = '';
   }
 
 }
