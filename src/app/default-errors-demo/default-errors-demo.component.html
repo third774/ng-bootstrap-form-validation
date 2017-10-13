@@ -22,3 +22,22 @@
   <button type="submit" class="btn btn-primary">Submit</button>
   <button type="button" class="btn btn-danger" (click)="this.handleReset()">Reset</button>
 </form>
+
+<br>
+<br>
+<br>
+<p><strong>FORM WITHOUT FORM GROUP</strong></p>
+<br>
+
+<form (ngSubmit)="this.handleSubmitWithoutFormGroup()">
+  <div class="form-group">
+    <label for="exampleInputTitle">Title</label>
+    <input type="text" class="form-control" id="exampleInputTitle" placeholder="Title" [(ngModel)]="title" [ngModelOptions]="{standalone: true}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputDescription">Description</label>
+    <input type="text" class="form-control" id="exampleInputDescription" placeholder="Description" [(ngModel)]="description" [ngModelOptions]="{standalone: true}">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-danger" (click)="this.handleResetWithoutFormGroup()">Reset</button>
+</form>
