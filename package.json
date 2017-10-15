@@ -23,7 +23,7 @@
     "packagr": "ng-packagr -p ng-package.json",
     "clean": "rimraf dist && rimraf .ng_build",
     "pretty": "prettier --write \"**/*.ts\"",
-    "precommit": "npm run pretty"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.ts": [
