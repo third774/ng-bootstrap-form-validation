@@ -9,7 +9,7 @@ import {
 import { FormGroup } from "@angular/forms";
 
 @Directive({
-  selector: "form"
+  selector: "form[formGroup]"
 })
 export class FormValidationDirective implements OnInit {
   @Input() formGroup: FormGroup;
