@@ -1,22 +1,20 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DefaultErrorsDemoComponent } from './default-errors-demo.component';
+import { DefaultErrorsDemoComponent } from "./default-errors-demo.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-describe('DefaultErrorsDemoComponent', () => {
+describe("DefaultErrorsDemoComponent", () => {
   let component: DefaultErrorsDemoComponent;
   let fixture: ComponentFixture<DefaultErrorsDemoComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        ReactiveFormsModule
-      ],
-      declarations: [ DefaultErrorsDemoComponent ]
+  beforeEach(
+    async(() => {
+      TestBed.configureTestingModule({
+        imports: [FormsModule, ReactiveFormsModule],
+        declarations: [DefaultErrorsDemoComponent]
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DefaultErrorsDemoComponent);
@@ -24,7 +22,7 @@ describe('DefaultErrorsDemoComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should be created', () => {
+  it("should be created", () => {
     expect(component).toBeTruthy();
   });
 });

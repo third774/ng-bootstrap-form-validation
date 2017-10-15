@@ -1,1 +1,1 @@
-export {FormValidationDirective} from './form-validation.directive';
+export { FormValidationDirective } from "./form-validation.directive";

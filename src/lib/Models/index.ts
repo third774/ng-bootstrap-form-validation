@@ -1,1 +1,1 @@
-export {ErrorMessage, FormatErrorFunction} from './ErrorMessage';
+export { ErrorMessage, FormatErrorFunction } from "./ErrorMessage";

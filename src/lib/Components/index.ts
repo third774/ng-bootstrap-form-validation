@@ -1,1 +1,3 @@
-export {FormGroupComponent} from './form-group-component/form-group-component';
+export {
+  FormGroupComponent
+} from "./form-group-component/form-group-component";

@@ -1,36 +1,38 @@
-import {ErrorMessage} from "./Models/ErrorMessage";
+import { ErrorMessage } from "./Models/ErrorMessage";
 
 export const DEFAULT_ERRORS: ErrorMessage[] = [
   {
-    error: 'required',
+    error: "required",
     format: label => `${label} is required`
   },
   {
-    error: 'pattern',
+    error: "pattern",
     format: label => `${label} is invalid`
   },
   {
-    error: 'minlength',
-    format: (label, error) => `${label} must be at least ${error.requiredLength} characters`
+    error: "minlength",
+    format: (label, error) =>
+      `${label} must be at least ${error.requiredLength} characters`
   },
   {
-    error: 'maxlength',
-    format: (label, error) => `${label} must be no longer than ${error.requiredLength} characters`
+    error: "maxlength",
+    format: (label, error) =>
+      `${label} must be no longer than ${error.requiredLength} characters`
   },
   {
-    error: 'requiredTrue',
+    error: "requiredTrue",
     format: (label, error) => `${label} is required`
   },
   {
-    error: 'email',
+    error: "email",
     format: (label, error) => `Invalid email address`
   },
   {
-    error: 'max',
+    error: "max",
     format: (label, error) => `${label} must be no greater than ${error.max}`
   },
   {
-    error: 'min',
+    error: "min",
     format: (label, error) => `${label} must be no less than ${error.min}`
   }
 ];
