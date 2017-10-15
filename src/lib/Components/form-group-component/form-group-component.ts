@@ -70,7 +70,7 @@ export class FormGroupComponent {
       Object.keys(control.errors).forEach(key => {
         const error = this.errorMessages.find(error => error.error === key);
         if (!error) return;
-              messages.push(error.format(this.label, control.errors[key]));
+               messages.push(error.format(this.label, control.errors[key]));
       });
     });
     return messages;
