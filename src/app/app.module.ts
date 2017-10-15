@@ -7,14 +7,22 @@ import { DefaultErrorsDemoComponent } from "./default-errors-demo/default-errors
 import { NgBootstrapFormValidationModule } from "../lib/ng-bootstrap-form-validation.module";
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HorizontalFormComponent } from "./horizontal-form/horizontal-form.component";
+import { AppRoutingModule } from "../app-routing.module";
 
 @NgModule({
-  declarations: [AppComponent, DefaultErrorsDemoComponent, NavBarComponent],
+  declarations: [
+    AppComponent,
+    DefaultErrorsDemoComponent,
+    NavBarComponent,
+    HorizontalFormComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgBootstrapFormValidationModule.forRoot()
+    NgBootstrapFormValidationModule.forRoot(),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
