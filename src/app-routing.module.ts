@@ -4,7 +4,7 @@ import { DefaultErrorsDemoComponent } from "./app/default-errors-demo/default-er
 import { HorizontalFormComponent } from "./app/horizontal-form/horizontal-form.component";
 
 const APP_ROUTES: Routes = [
-  { path: "defaults", component: DefaultErrorsDemoComponent },
+  { path: "default", component: DefaultErrorsDemoComponent },
   { path: "horizontal", component: HorizontalFormComponent },
   { path: "", redirectTo: "/defaults", pathMatch: "full" }
   // { path: '**', component: PageNotFoundComponent }
