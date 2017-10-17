@@ -6,7 +6,7 @@ import { HorizontalFormComponent } from "./app/horizontal-form/horizontal-form.c
 const APP_ROUTES: Routes = [
   { path: "default", component: DefaultErrorsDemoComponent },
   { path: "horizontal", component: HorizontalFormComponent },
-  { path: "", redirectTo: "/defaults", pathMatch: "full" }
+  { path: "", redirectTo: "/default", pathMatch: "full" }
   // { path: '**', component: PageNotFoundComponent }
 ];
 
