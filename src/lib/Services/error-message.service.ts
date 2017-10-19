@@ -2,7 +2,7 @@ import { Inject, Injectable } from "@angular/core";
 import { ErrorMessage } from "../Models/ErrorMessage";
 import { DEFAULT_ERRORS } from "../default-errors";
 import { CUSTOM_ERROR_MESSAGES } from "../Tokens/tokens";
-import { NgControl } from "@angular/forms";
+import { FormControl } from "@angular/forms";
 
 @Injectable()
 export class ErrorMessageService {
@@ -19,7 +19,7 @@ export class ErrorMessageService {
   }
 
   public generateErrorMessages(
-    formControl: NgControl,
+    formControl: FormControl,
     label: string,
     formControlErrorMessages: ErrorMessage[] = []
   ): string[] {
