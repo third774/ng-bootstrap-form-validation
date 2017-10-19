@@ -1,6 +1,7 @@
-import { Directive, Input, HostListener, OnInit, EventEmitter, Output } from "@angular/core";
+import { Directive, Input, HostListener, OnInit, EventEmitter, Output, Injectable } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
+@Injectable()
 @Directive({
   selector: "form[formGroup]"
 })
