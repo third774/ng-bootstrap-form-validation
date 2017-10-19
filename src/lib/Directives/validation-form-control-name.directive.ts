@@ -21,6 +21,10 @@ export class ValidationFormControlNameDirective implements OnInit, OnDestroy {
   @Input() customErrorMessages: ErrorMessage[] = [];
   @Input() validationDisabled: boolean = false;
 
+  helpBlocks: any[] = [];
+  validValueChangesSubscription: Subscription;
+  invalidValueChangesSubscription: Subscription;
+
   constructor(
     private renderer: Renderer2,
     private el: ElementRef,
@@ -28,9 +32,6 @@ export class ValidationFormControlNameDirective implements OnInit, OnDestroy {
     private formControlName: FormControlName,
     private formGroup: FormValidationDirective
   ) {}
-
-  validValueChangesSubscription: Subscription;
-  invalidValueChangesSubscription: Subscription;
 
   ngOnInit() {
     this.validValueChangesSubscription = this.formControlName.valueChanges
@@ -50,9 +51,7 @@ export class ValidationFormControlNameDirective implements OnInit, OnDestroy {
     this.invalidValueChangesSubscription.unsubscribe();
   }
 
-  helpBlocks: any[] = [];
-
-  updateErrorText = () => {
+  private updateErrorText = () => {
     const generatedErrorMessages = this.errorMessageService.generateErrorMessages(
       this.formControlName,
       "This field",
