@@ -1,18 +1,17 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
-
-import { FormGroupComponent } from "./form-group-component";
-import { ErrorMessageService } from "../../Services/error-message.service";
-import { CUSTOM_ERROR_MESSAGES } from "../../Tokens/tokens";
-import { errorMessageServiceFactory } from "../../ng-bootstrap-form-validation.module";
+import { FormGroupValidationDirective } from "./form-group-validation-directive";
+import { ErrorMessageService } from "../Services/error-message.service";
+import { errorMessageServiceFactory } from "../ng-bootstrap-form-validation.module";
+import { CUSTOM_ERROR_MESSAGES } from "../Tokens/tokens";
 
 describe("FormGroupComponent", () => {
-  let component: FormGroupComponent;
-  let fixture: ComponentFixture<FormGroupComponent>;
+  let component: FormGroupValidationDirective;
+  let fixture: ComponentFixture<FormGroupValidationDirective>;
 
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [FormGroupComponent],
+        declarations: [FormGroupValidationDirective],
         providers: [
           {
             provide: ErrorMessageService,
@@ -29,7 +28,7 @@ describe("FormGroupComponent", () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormGroupComponent);
+    fixture = TestBed.createComponent(FormGroupValidationDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

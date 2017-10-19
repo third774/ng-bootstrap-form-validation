@@ -7,5 +7,5 @@ export {
   FormValidationDirective
 } from "./Directives/form-validation.directive";
 export {
-  FormGroupComponent
-} from "./Components/form-group-component/form-group-component";
+  FormGroupValidationDirective
+} from "./Directives/form-group-validation-directive";
