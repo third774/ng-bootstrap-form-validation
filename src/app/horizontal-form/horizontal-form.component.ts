@@ -10,7 +10,10 @@ export class HorizontalFormComponent implements OnInit {
   loginForm = new FormGroup({
     email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", [Validators.required, Validators.minLength(6)]),
-    rememberMe: new FormControl(false)
+    rememberMe: new FormControl(false),
+    group: new FormGroup({
+      foo: new FormControl("", Validators.required)
+    })
   });
 
   constructor() {}
