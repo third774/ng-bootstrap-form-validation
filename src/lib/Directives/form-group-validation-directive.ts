@@ -1,8 +1,17 @@
-import { Directive, ContentChildren, ElementRef, HostBinding, Input, QueryList } from "@angular/core";
+import {
+  Directive,
+  ContentChildren,
+  ElementRef,
+  HostBinding,
+  Input,
+  QueryList,
+  Injectable
+} from "@angular/core";
 import { FormControlName } from "@angular/forms";
 import { ErrorMessage } from "../Models/ErrorMessage";
 import { ErrorMessageService } from "../Services/error-message.service";
 
+@Injectable()
 @Directive({
   selector: ".form-group"
 })
@@ -31,6 +40,6 @@ export class FormGroupValidationDirective {
 
   get label() {
     const label = this.elRef.nativeElement.querySelector("label");
-    return label && label.textContent ? label.textContent.trim() : "This field";
+    return label && label.textContent ? label.textContent.trim() : null;
   }
 }
