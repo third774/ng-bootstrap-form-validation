@@ -1,3 +1,4 @@
 {
-  "parser": "typescript"
+  "parser": "typescript",
+  "printWidth": 110
 }

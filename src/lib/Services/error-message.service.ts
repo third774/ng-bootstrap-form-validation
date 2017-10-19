@@ -8,23 +8,14 @@ import { NgControl } from "@angular/forms";
 export class ErrorMessageService {
   private defaultErrors = DEFAULT_ERRORS;
 
-  constructor(
-    @Inject(CUSTOM_ERROR_MESSAGES)
-    public customErrorMessages: ErrorMessage[] = []
-  ) {}
+  constructor(@Inject(CUSTOM_ERROR_MESSAGES) public customErrorMessages: ErrorMessage[] = []) {}
 
   get errorMessages() {
     return [...this.customErrorMessages, ...this.defaultErrors];
   }
 
-  private mergeErrorMessages(
-    formControlCustomErrorMessages: ErrorMessage[]
-  ): ErrorMessage[] {
-    return [
-      ...formControlCustomErrorMessages,
-      ...this.customErrorMessages,
-      ...this.defaultErrors
-    ];
+  private mergeErrorMessages(formControlCustomErrorMessages: ErrorMessage[]): ErrorMessage[] {
+    return [...formControlCustomErrorMessages, ...this.customErrorMessages, ...this.defaultErrors];
   }
 
   public generateErrorMessages(
@@ -33,15 +24,9 @@ export class ErrorMessageService {
     formControlErrorMessages: ErrorMessage[] = []
   ): string[] {
     if (formControl.valid) return [];
-    const mergedErrorMessages = this.mergeErrorMessages(
-      formControlErrorMessages
-    );
-    return Object.keys(
-      formControl.errors
-    ).reduce((messages: string[], key: string) => {
-      const error = mergedErrorMessages.find(
-        errorMessage => errorMessage.error === key
-      );
+    const mergedErrorMessages = this.mergeErrorMessages(formControlErrorMessages);
+    return Object.keys(formControl.errors).reduce((messages: string[], key: string) => {
+      const error = mergedErrorMessages.find(errorMessage => errorMessage.error === key);
       if (!error) return messages;
       messages.push(error.format(label, formControl.errors[key]));
       return messages;

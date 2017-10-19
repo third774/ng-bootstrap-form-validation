@@ -10,11 +10,7 @@ describe("AppComponent", () => {
     async(() => {
       TestBed.configureTestingModule({
         imports: [FormsModule, ReactiveFormsModule],
-        declarations: [
-          AppComponent,
-          NavBarComponent,
-          DefaultErrorsDemoComponent
-        ]
+        declarations: [AppComponent, NavBarComponent, DefaultErrorsDemoComponent]
       }).compileComponents();
     })
   );

@@ -1,11 +1,4 @@
-import {
-  Directive,
-  Input,
-  HostListener,
-  OnInit,
-  EventEmitter,
-  Output
-} from "@angular/core";
+import { Directive, Input, HostListener, OnInit, EventEmitter, Output } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
 @Directive({

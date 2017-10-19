@@ -8,18 +8,10 @@ import { ValidationFormControlNameDirective } from "./Directives/validation-form
 import { FormGroupValidationDirective } from "./Directives/form-group-validation-directive";
 
 @NgModule({
-  declarations: [
-    FormValidationDirective,
-    FormGroupValidationDirective,
-    ValidationFormControlNameDirective
-  ],
+  declarations: [FormValidationDirective, FormGroupValidationDirective, ValidationFormControlNameDirective],
   imports: [CommonModule],
   providers: [ErrorMessageService],
-  exports: [
-    FormValidationDirective,
-    FormGroupValidationDirective,
-    ValidationFormControlNameDirective
-  ]
+  exports: [FormValidationDirective, FormGroupValidationDirective, ValidationFormControlNameDirective]
 })
 export class NgBootstrapFormValidationModule {
   static forRoot(customErrorMessages?: ErrorMessage[]): ModuleWithProviders {
@@ -40,8 +32,6 @@ export class NgBootstrapFormValidationModule {
   }
 }
 
-export function errorMessageServiceFactory(
-  customErrorMessages?: ErrorMessage[]
-) {
+export function errorMessageServiceFactory(customErrorMessages?: ErrorMessage[]) {
   return new ErrorMessageService(customErrorMessages);
 }

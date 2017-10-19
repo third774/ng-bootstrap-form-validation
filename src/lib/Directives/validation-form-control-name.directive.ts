@@ -1,11 +1,4 @@
-import {
-  Directive,
-  OnInit,
-  OnDestroy,
-  Input,
-  Renderer2,
-  ElementRef
-} from "@angular/core";
+import { Directive, OnInit, OnDestroy, Input, Renderer2, ElementRef } from "@angular/core";
 import { FormControlName } from "@angular/forms";
 import { ErrorMessage } from "../Models/ErrorMessage";
 import { ErrorMessageService } from "../Services/error-message.service";
@@ -59,10 +52,7 @@ export class ValidationFormControlNameDirective implements OnInit, OnDestroy {
     );
 
     this.helpBlocks.forEach(block =>
-      this.renderer.removeChild(
-        this.renderer.parentNode(this.el.nativeElement),
-        block
-      )
+      this.renderer.removeChild(this.renderer.parentNode(this.el.nativeElement), block)
     );
 
     // empty the array
@@ -74,10 +64,7 @@ export class ValidationFormControlNameDirective implements OnInit, OnDestroy {
         this.helpBlocks.push(helpBlock);
         helpBlock.classList.add("help-block");
         helpBlock.innerHTML = errorMessage;
-        this.renderer.appendChild(
-          this.renderer.parentNode(this.el.nativeElement),
-          helpBlock
-        );
+        this.renderer.appendChild(this.renderer.parentNode(this.el.nativeElement), helpBlock);
       });
     }
   };

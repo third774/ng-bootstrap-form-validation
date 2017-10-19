@@ -11,13 +11,11 @@ export const DEFAULT_ERRORS: ErrorMessage[] = [
   },
   {
     error: "minlength",
-    format: (label, error) =>
-      `${label} must be at least ${error.requiredLength} characters`
+    format: (label, error) => `${label} must be at least ${error.requiredLength} characters`
   },
   {
     error: "maxlength",
-    format: (label, error) =>
-      `${label} must be no longer than ${error.requiredLength} characters`
+    format: (label, error) => `${label} must be no longer than ${error.requiredLength} characters`
   },
   {
     error: "requiredTrue",

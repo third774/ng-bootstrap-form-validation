@@ -12,12 +12,7 @@ import { HorizontalFormComponent } from "./horizontal-form/horizontal-form.compo
 import { AppRoutingModule } from "../app-routing.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DefaultErrorsDemoComponent,
-    NavBarComponent,
-    HorizontalFormComponent
-  ],
+  declarations: [AppComponent, DefaultErrorsDemoComponent, NavBarComponent, HorizontalFormComponent],
   imports: [
     BrowserModule,
     FormsModule,
