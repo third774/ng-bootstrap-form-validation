@@ -6,12 +6,23 @@ import { ErrorMessage } from "./Models/ErrorMessage";
 import { CUSTOM_ERROR_MESSAGES } from "./Tokens/tokens";
 import { ValidationFormControlNameDirective } from "./Directives/validation-form-control-name.directive";
 import { FormGroupValidationDirective } from "./Directives/form-group-validation-directive";
+import { FormErrorsComponent } from "./Components/form-errors/form-errors.component";
 
 @NgModule({
-  declarations: [FormValidationDirective, FormGroupValidationDirective, ValidationFormControlNameDirective],
+  declarations: [
+    FormValidationDirective,
+    FormGroupValidationDirective,
+    ValidationFormControlNameDirective,
+    FormErrorsComponent
+  ],
   imports: [CommonModule],
   providers: [ErrorMessageService],
-  exports: [FormValidationDirective, FormGroupValidationDirective, ValidationFormControlNameDirective]
+  exports: [
+    FormValidationDirective,
+    FormGroupValidationDirective,
+    ValidationFormControlNameDirective,
+    FormErrorsComponent
+  ]
 })
 export class NgBootstrapFormValidationModule {
   static forRoot(customErrorMessages?: ErrorMessage[]): ModuleWithProviders {
