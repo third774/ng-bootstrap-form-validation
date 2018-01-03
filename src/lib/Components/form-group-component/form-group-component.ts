@@ -1,23 +1,26 @@
 import {
   Component,
   ContentChildren,
+  ContentChild,
   ElementRef,
   HostBinding,
   Input,
-  QueryList
+  QueryList,
+  AfterContentInit
 } from "@angular/core";
 import { FormControlName } from "@angular/forms";
 import { ErrorMessage } from "../../Models/ErrorMessage";
 import { ErrorMessageService } from "../../Services/error-message.service";
+import { HelpBlockComponent } from "../help-block/help-block.component";
 
 @Component({
   selector: ".form-group",
   template: `
     <ng-content></ng-content>
-    <span class="help-block" *ngFor="let message of messages">{{message}}</span>
+    <help-block *ngIf="!helpBlock" [messages]="messages"></help-block>
   `
 })
-export class FormGroupComponent {
+export class FormGroupComponent implements AfterContentInit {
   @ContentChildren(FormControlName)
   FormControlNames: QueryList<FormControlName>;
 
@@ -42,10 +45,22 @@ export class FormGroupComponent {
     );
   }
 
+  @ContentChild(HelpBlockComponent) public helpBlock: HelpBlockComponent;
+
+  public messages: () => string[];
+
   constructor(
     private elRef: ElementRef,
     private errorMessageService: ErrorMessageService
-  ) {}
+  ) {
+    this.messages = () => this.getMessages();
+  }
+
+  ngAfterContentInit() {
+    if (this.helpBlock) {
+      this.helpBlock.messages = this.messages;
+    }
+  }
 
   get label() {
     const label = this.elRef.nativeElement.querySelector("label");
@@ -63,7 +78,7 @@ export class FormGroupComponent {
     ];
   }
 
-  get messages(): string[] {
+  private getMessages(): string[] {
     const messages = [];
     if (!this.isDirtyAndTouched || this.validationDisabled) return messages;
     this.FormControlNames.filter(c => !c.valid).forEach(control => {

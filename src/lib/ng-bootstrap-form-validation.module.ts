@@ -2,15 +2,20 @@ import { CommonModule } from "@angular/common";
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { FormValidationDirective } from "./Directives/form-validation.directive";
 import { FormGroupComponent } from "./Components/form-group-component/form-group-component";
+import { HelpBlockComponent } from "./Components/help-block/help-block.component";
 import { ErrorMessageService } from "./Services/error-message.service";
 import { ErrorMessage } from "./Models/ErrorMessage";
 import { CUSTOM_ERROR_MESSAGES } from "./Tokens/tokens";
 
 @NgModule({
-  declarations: [FormValidationDirective, FormGroupComponent],
+  declarations: [
+    FormValidationDirective,
+    FormGroupComponent,
+    HelpBlockComponent
+  ],
   imports: [CommonModule],
   providers: [ErrorMessageService],
-  exports: [FormValidationDirective, FormGroupComponent]
+  exports: [FormValidationDirective, FormGroupComponent, HelpBlockComponent]
 })
 export class NgBootstrapFormValidationModule {
   static forRoot(customErrorMessages?: ErrorMessage[]): ModuleWithProviders {
