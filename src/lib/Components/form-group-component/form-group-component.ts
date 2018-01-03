@@ -4,7 +4,8 @@ import {
   ElementRef,
   HostBinding,
   Input,
-  QueryList
+  QueryList,
+  OnInit
 } from "@angular/core";
 import { FormControlName } from "@angular/forms";
 import { ErrorMessage } from "../../Models/ErrorMessage";
@@ -17,13 +18,13 @@ import { ErrorMessageService } from "../../Services/error-message.service";
     <span class="help-block" *ngFor="let message of messages">{{message}}</span>
   `
 })
-export class FormGroupComponent {
+export class FormGroupComponent implements OnInit {
   @ContentChildren(FormControlName)
   FormControlNames: QueryList<FormControlName>;
 
   @Input() customErrorMessages: ErrorMessage[] = [];
 
-  @Input() validationDisabled: boolean = false;
+  @Input() validationDisabled = false;
 
   @HostBinding("class.has-error")
   get hasErrors() {
@@ -42,10 +43,19 @@ export class FormGroupComponent {
     );
   }
 
+  public errorMessages: ErrorMessage[];
+
   constructor(
     private elRef: ElementRef,
     private errorMessageService: ErrorMessageService
   ) {}
+
+  ngOnInit() {
+    this.errorMessages = [
+      ...this.errorMessageService.errorMessages,
+      ...this.customErrorMessages
+    ].reverse();
+  }
 
   get label() {
     const label = this.elRef.nativeElement.querySelector("label");
@@ -56,20 +66,17 @@ export class FormGroupComponent {
     return this.FormControlNames.some(c => c.dirty && c.touched);
   }
 
-  get errorMessages(): ErrorMessage[] {
-    return [
-      ...this.customErrorMessages,
-      ...this.errorMessageService.errorMessages
-    ];
-  }
-
   get messages(): string[] {
     const messages = [];
-    if (!this.isDirtyAndTouched || this.validationDisabled) return messages;
+    if (!this.isDirtyAndTouched || this.validationDisabled) {
+      return messages;
+    }
     this.FormControlNames.filter(c => !c.valid).forEach(control => {
       Object.keys(control.errors).forEach(key => {
-        const error = this.errorMessages.find(error => error.error === key);
-        if (!error) return;
+        const error = this.errorMessages.find(err => err.error === key);
+        if (!error) {
+          return;
+        }
         messages.push(error.format(this.label, control.errors[key]));
       });
     });

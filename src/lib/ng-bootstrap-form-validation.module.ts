@@ -13,26 +13,17 @@ import { CUSTOM_ERROR_MESSAGES } from "./Tokens/tokens";
   exports: [FormValidationDirective, FormGroupComponent]
 })
 export class NgBootstrapFormValidationModule {
-  static forRoot(customErrorMessages?: ErrorMessage[]): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders {
     return {
       ngModule: NgBootstrapFormValidationModule,
       providers: [
-        {
-          provide: ErrorMessageService,
-          useFactory: errorMessageServiceFactory,
-          deps: [CUSTOM_ERROR_MESSAGES]
-        },
+        ErrorMessageService,
         {
           provide: CUSTOM_ERROR_MESSAGES,
-          useValue: customErrorMessages
+          useValue: [],
+          multi: true
         }
       ]
     };
   }
-}
-
-export function errorMessageServiceFactory(
-  customErrorMessages?: ErrorMessage[]
-) {
-  return new ErrorMessageService(customErrorMessages);
 }

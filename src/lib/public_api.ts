@@ -1,5 +1,4 @@
 export {
-  errorMessageServiceFactory,
   NgBootstrapFormValidationModule
 } from "./ng-bootstrap-form-validation.module";
 export { ErrorMessage, FormatErrorFunction } from "./Models/ErrorMessage";
@@ -9,3 +8,4 @@ export {
 export {
   FormGroupComponent
 } from "./Components/form-group-component/form-group-component";
+export * from "./Tokens/tokens";

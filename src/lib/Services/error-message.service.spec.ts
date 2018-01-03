@@ -2,7 +2,6 @@ import { inject, TestBed } from "@angular/core/testing";
 
 import { ErrorMessageService } from "./error-message.service";
 import { CUSTOM_ERROR_MESSAGES } from "../Tokens/tokens";
-import { errorMessageServiceFactory } from "../ng-bootstrap-form-validation.module";
 
 describe("ErrorMessageService", () => {
   const customRequiredErrorMessage = {
@@ -15,14 +14,11 @@ describe("ErrorMessageService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        {
-          provide: ErrorMessageService,
-          useFactory: errorMessageServiceFactory,
-          deps: [CUSTOM_ERROR_MESSAGES]
-        },
+        ErrorMessageService,
         {
           provide: CUSTOM_ERROR_MESSAGES,
-          useValue: [customRequiredErrorMessage]
+          useValue: [customRequiredErrorMessage],
+          multi: true
         }
       ]
     });
@@ -37,9 +33,9 @@ describe("ErrorMessageService", () => {
 
   describe("errorMessages()", () => {
     it(
-      "should return custom errors before default errors",
+      "should return custom errors after default errors",
       inject([ErrorMessageService], (service: ErrorMessageService) => {
-        expect(service.errorMessages[0]).toEqual(customRequiredErrorMessage);
+        expect(service.errorMessages.pop()).toEqual(customRequiredErrorMessage);
       })
     );
   });
