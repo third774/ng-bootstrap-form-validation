@@ -1,6 +1,6 @@
 {
   "name": "ng-bootstrap-form-validation",
-  "version": "1.0.10",
+  "version": "2.0.0",
   "description": "An Angular module that makes Bootstrap form validation easy.",
   "license": "MIT",
   "keywords": [
