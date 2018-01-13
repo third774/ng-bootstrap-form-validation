@@ -18,7 +18,7 @@ import { MessagesComponent } from "../messages/messages.component";
   selector: ".form-group",
   template: `
     <ng-content></ng-content>
-    <bfv-messages *ngIf="!helpBlock" [messages]="messages"></bfv-messages>
+    <bfv-messages *ngIf="!messagesBlock" [messages]="messages"></bfv-messages>
   `
 })
 export class FormGroupComponent implements AfterContentInit {
