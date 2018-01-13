@@ -25,12 +25,13 @@ export class FormValidationDirective implements OnInit {
 
   markAsTouchedAndDirty(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(key => {
-      if (formGroup.controls[key] instanceof FormGroup) {
-        this.markAsTouchedAndDirty(formGroup.controls[key] as FormGroup);
-      } else {
-        formGroup.controls[key].markAsDirty();
-        formGroup.controls[key].markAsTouched();
-        formGroup.controls[key].updateValueAndValidity();
+      const control = formGroup.controls[key];
+      if (control instanceof FormGroup) {
+        this.markAsTouchedAndDirty(control as FormGroup);
+      } else if (control.enabled) {
+        control.markAsDirty();
+        control.markAsTouched();
+        control.updateValueAndValidity();
       }
     });
   }
