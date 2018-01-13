@@ -11,13 +11,14 @@ import {
 import { FormControlName } from "@angular/forms";
 import { ErrorMessage } from "../../Models/ErrorMessage";
 import { ErrorMessageService } from "../../Services/error-message.service";
-import { HelpBlockComponent } from "../help-block/help-block.component";
+import { MessagesComponent } from "../messages/messages.component";
 
 @Component({
+  // tslint:disable:component-selector
   selector: ".form-group",
   template: `
     <ng-content></ng-content>
-    <help-block *ngIf="!helpBlock" [messages]="messages"></help-block>
+    <bfv-messages *ngIf="!helpBlock" [messages]="messages"></bfv-messages>
   `
 })
 export class FormGroupComponent implements AfterContentInit {
@@ -26,7 +27,7 @@ export class FormGroupComponent implements AfterContentInit {
 
   @Input() customErrorMessages: ErrorMessage[] = [];
 
-  @Input() validationDisabled: boolean = false;
+  @Input() validationDisabled = false;
 
   @HostBinding("class.has-error")
   get hasErrors() {
@@ -45,7 +46,7 @@ export class FormGroupComponent implements AfterContentInit {
     );
   }
 
-  @ContentChild(HelpBlockComponent) public helpBlock: HelpBlockComponent;
+  @ContentChild(MessagesComponent) public messagesBlock: MessagesComponent;
 
   public messages: () => string[];
 
@@ -57,8 +58,8 @@ export class FormGroupComponent implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-    if (this.helpBlock) {
-      this.helpBlock.messages = this.messages;
+    if (this.messagesBlock) {
+      this.messagesBlock.messages = this.messages;
     }
   }
 
@@ -80,11 +81,15 @@ export class FormGroupComponent implements AfterContentInit {
 
   private getMessages(): string[] {
     const messages = [];
-    if (!this.isDirtyAndTouched || this.validationDisabled) return messages;
+    if (!this.isDirtyAndTouched || this.validationDisabled) {
+      return messages;
+    }
     this.FormControlNames.filter(c => !c.valid).forEach(control => {
       Object.keys(control.errors).forEach(key => {
-        const error = this.errorMessages.find(error => error.error === key);
-        if (!error) return;
+        const error = this.errorMessages.find(err => err.error === key);
+        if (!error) {
+          return;
+        }
         messages.push(error.format(this.label, control.errors[key]));
       });
     });
