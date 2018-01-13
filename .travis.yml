@@ -1,6 +1,18 @@
 language: node_js
 node_js:
-  - '6.9.5'
+  - "8.9.1"
 
 script:
   npm run build
+
+before_deploy: "cd dist"
+
+deploy:
+  provider: npm
+  skip_cleanup: true
+  email: kevin.kipp@gmail.com
+  api_key:
+    secure: d+hmSUjFB+Rn/fZ4fpizftZPSTMq9WX27sRLhuodZ/eltwjGRL97wiRTQ+35sd+argZDjACv/krg5yFhxD/lyFQmudtVni/x3abOkEGjHIEi9la8RBmT4umi51hHI/0G8MPwPx01KJrjNeux1lzQ15Uot5hjioObQhTIWgoG5ifwA76s5AxheoCkNlYN40bl9M4x4x0mYBZETVh+8RnKO6h26tOZPSWWmGEQqB3Lq6dyFoNzdLztzU9UmGjJ2d4ltySP48xpaaupASkCy83WL3AgR2ZIs1MFRD6kuNsY9EduX0Lq6B6PjA9V4jmKRLO8nOCvavb+UHRIRMWu/UIqwsIP9zzry96BYUrJm8f9aNRwhh5qAPVjeEriI4kMePzeB12/RoAf2OEE9h+D75YPRFev/UcVONqjtuFQjPZBBIdSp2AOLLRRvGjAoN2jV3WzpW/uB0acHm7RrHo1qZWL5MigvOdOXK4R4WYXP3ZaOS0gO7Khg/tDsOW7If53EKD9s7wwF26Ts/OuREOiuIYMxviQqbya/lnpdMFLw4N57oP0dDpOKZvng442yAy6XrIJRkxNlJ+ukzvmSwGQyO0hnWRt9bnnhs/bmFZmcPAu1un2dzuNcAh/Fg9hc7OZOGaNH8aBY9ws4jtLeLP1cedGbS5aFxYEs1spvwvRmj6PD3A=
+  on:
+    tags: true
+    repo: third774/testing-travis-ci-deploy-to-npm
