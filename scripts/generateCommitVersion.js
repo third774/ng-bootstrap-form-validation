@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const { PWD, TRAVIS_COMMIT } = this.process.env;
+const { PWD, TRAVIS_COMMIT } = process.env;
 
 const packageJson = JSON.parse(
   fs.readFileSync(path.join(PWD, "dist", "package.json"), "utf8")
