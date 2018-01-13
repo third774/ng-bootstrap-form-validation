@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
+import { MockComponent } from "ng2-mock-component";
+
 import { FormGroupComponent } from "./form-group-component";
 import { ErrorMessageService } from "../../Services/error-message.service";
 import { CUSTOM_ERROR_MESSAGES } from "../../Tokens/tokens";
@@ -12,7 +14,13 @@ describe("FormGroupComponent", () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        declarations: [FormGroupComponent],
+        declarations: [
+          FormGroupComponent,
+          MockComponent({
+            selector: "bfv-messages",
+            inputs: ["messages"]
+          })
+        ],
         providers: [
           {
             provide: ErrorMessageService,
