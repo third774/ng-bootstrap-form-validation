@@ -1,9 +1,8 @@
 language: node_js
 node_js:
-  - "8.9.1"
+- 8.9.1
 
-script:
-  npm run packagr
+script: npm run packagr
 
 before_deploy: "cd dist"
 
@@ -12,8 +11,7 @@ deploy:
   skip_cleanup: true
   email: kevin.kipp@gmail.com
   api_key:
-    secure: d+hmSUjFB+Rn/fZ4fpizftZPSTMq9WX27sRLhuodZ/eltwjGRL97wiRTQ+35sd+argZDjACv/krg5yFhxD/lyFQmudtVni/x3abOkEGjHIEi9la8RBmT4umi51hHI/0G8MPwPx01KJrjNeux1lzQ15Uot5hjioObQhTIWgoG5ifwA76s5AxheoCkNlYN40bl9M4x4x0mYBZETVh+8RnKO6h26tOZPSWWmGEQqB3Lq6dyFoNzdLztzU9UmGjJ2d4ltySP48xpaaupASkCy83WL3AgR2ZIs1MFRD6kuNsY9EduX0Lq6B6PjA9V4jmKRLO8nOCvavb+UHRIRMWu/UIqwsIP9zzry96BYUrJm8f9aNRwhh5qAPVjeEriI4kMePzeB12/RoAf2OEE9h+D75YPRFev/UcVONqjtuFQjPZBBIdSp2AOLLRRvGjAoN2jV3WzpW/uB0acHm7RrHo1qZWL5MigvOdOXK4R4WYXP3ZaOS0gO7Khg/tDsOW7If53EKD9s7wwF26Ts/OuREOiuIYMxviQqbya/lnpdMFLw4N57oP0dDpOKZvng442yAy6XrIJRkxNlJ+ukzvmSwGQyO0hnWRt9bnnhs/bmFZmcPAu1un2dzuNcAh/Fg9hc7OZOGaNH8aBY9ws4jtLeLP1cedGbS5aFxYEs1spvwvRmj6PD3A=
+    secure: NnpDdb2vkN5MObg3kXrhEZqzSbgEgV5tDVEqggP/u9KsdXvUoF9ECXT2+A9pHLv5EdmZtbCiUjsEHJTClEPJosduVREmzXwbSCOHVMEkNu2kt8lHNniRAiBRS//XtCGaeD5NoX2OltGC2EOx1DDToyfBvUJI9AsC/ZpAzxsvEvQM4I2SMQF8W2HXKWMZIkOIbYBmN7MRLDufERkzX0cQqFrN1xZ0CGynwaeI4h08vX79A7nVRYRg0fwLpeDVXHWSt4cu41wyX1ei9IyDI43JDdp449SXZS8iMXPyNNlzjHRuIYkxtj1KvJTSBd7yDaiFhO/Mxj4pV6ftBFOJZI3PC8TwX920DWczWEo0X7kzMrUNxvbTEf2Wfw6Djwlon06hCj3bz6IyKBuliK4DyN2XZU3pZt624iajCuKwW3Y+k23DfHqgbQv73stTlvHfIrG4om14KOzuc60mepQWhyyX5r4GChN2o870Tz2T89gjrwrhS7YYXC0Cn+0AYTbxGKSQvFGj0ZzxaYp/tJ3N3sT0+JwFdKmNohLy5v5Af3fuUtzbiJrSboYwu+7TdVb8yH3RgqJ9npzi0MZB2Z2WcXn0x+Ofp7FiRDtq+2dbP8ukvZf/iFmqG0w5LqVadynAYr+mREeCWy/44yVu6CU8ikhlI4XgC7yZ02o5ia3nL8Gl9uI=
   on:
     tags: true
-    branch: master
     repo: third774/ng-bootstrap-form-validation
