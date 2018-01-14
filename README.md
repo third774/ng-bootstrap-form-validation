@@ -2,7 +2,7 @@
 
 An Angular module that makes Bootstrap form validation easy.
 
-[![Build Status](https://travis-ci.org/third774/ng-bootstrap-form-validation.svg?branch=master)](https://travis-ci.org/third774/ng-bootstrap-form-validation) 
+[![Build Status](https://travis-ci.org/third774/ng-bootstrap-form-validation.svg?branch=master)](https://travis-ci.org/third774/ng-bootstrap-form-validation)
 [![Dependencies](https://david-dm.org/third774/ng-bootstrap-form-validation.svg)](https://david-dm.org/third774/ng-bootstrap-form-validation.svg)
 [![npm downloads](https://img.shields.io/npm/dm/ng-bootstrap-form-validation.svg)](http://npm-stat.com/charts.html?package=ng-bootstrap-form-validation)
 
@@ -30,7 +30,7 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgBootstrapFormValidationModule.forRoot() 
+    NgBootstrapFormValidationModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
@@ -114,6 +114,34 @@ export class BasicExampleComponent implements OnInit {
 </div>
 ```
 
+#### Custom error message placement
+
+`basic-example.component.html`
+```html
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <form class="form-horizontal" [formGroup]="formGroup" (validSubmit)="onSubmit()">
+      <div class="form-group">
+        <label class="control-label col-sm-2">Email</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" formControlName="Email">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-2">Password</label>
+        <div class="col-sm-10">
+          <input type="password" class="form-control" formControlName="Password">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
+      <button class="btn btn-default" type="button" (click)="onReset()">Reset</button>
+      <button class="btn btn-primary pull-right" type="submit">Submit</button>
+    </form>
+  </div>
+</div>
+```
+
 ## Custom Error Messages
 
 ### Global Custom Errors
@@ -175,7 +203,7 @@ export class AppModule {
 
 In addition to providing custom errors at the top level using the `.forRoot()` method,
 you can provide custom error messages to a specific control by binding to the
-`customErrorMessages` directive on the `.form-group` element. Modifying the basic 
+`customErrorMessages` directive on the `.form-group` element. Modifying the basic
 example above, we can provide a one time custom error message to a specific `.form-group`. Unlike the global custom error messages, these functions do not need to be individually exported.
 
 `custom-error-example.component.ts`
