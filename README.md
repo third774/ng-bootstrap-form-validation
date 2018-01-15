@@ -116,6 +116,8 @@ export class BasicExampleComponent implements OnInit {
 
 #### Custom error message placement
 
+Note: the `<bfv-messsages></bfv-messages>` component still *must* be placed within the `<div class="form-group">`.
+
 `basic-example.component.html`
 ```html
 <div class="row">
