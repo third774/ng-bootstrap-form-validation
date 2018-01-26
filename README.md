@@ -58,7 +58,7 @@ export class OtherModule { }
 ```
 
 **Note:**
-If you are only using a single `app` module, then you will need to import both:
+If you are only using a single (`app`) module, then you will need to import both:
 
 ```ts
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
