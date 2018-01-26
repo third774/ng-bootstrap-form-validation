@@ -35,8 +35,47 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule { }
+```
+
+3) Add `NgBootstrapFormValidationModule` to other modules in your application:
+
+```ts
+import { NgModule } from '@angular/core';
+import { OtherComponent } from './other.component';
+
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+
+@NgModule({
+  declarations: [
+    OtherComponent
+  ],
+  imports: [
+    NgBootstrapFormValidationModule
+  ]
+})
+export class OtherModule { }
+```
+
+**Note:**
+If you are only using a single `app` module, then you will need to import both:
+
+```ts
+import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    ...
+    NgBootstrapFormValidationModule.forRoot(),
+    NgBootstrapFormValidationModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 ```
 
 ## Basics
