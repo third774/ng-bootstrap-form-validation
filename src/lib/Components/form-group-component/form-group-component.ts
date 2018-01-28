@@ -73,10 +73,9 @@ export class FormGroupComponent implements AfterContentInit {
   }
 
   get errorMessages(): ErrorMessage[] {
-    return [
-      ...this.customErrorMessages,
-      ...this.errorMessageService.errorMessages
-    ];
+    return this.customErrorMessages.concat(
+      this.errorMessageService.errorMessages
+    );
   }
 
   private getMessages(): string[] {
@@ -84,15 +83,19 @@ export class FormGroupComponent implements AfterContentInit {
     if (!this.isDirtyAndTouched || this.validationDisabled) {
       return messages;
     }
-    this.FormControlNames.filter(c => !c.valid).forEach(control => {
-      Object.keys(control.errors).forEach(key => {
-        const error = this.errorMessages.find(err => err.error === key);
-        if (!error) {
-          return;
-        }
-        messages.push(error.format(this.label, control.errors[key]));
+
+    this.FormControlNames
+      .filter(c => !c.valid && !!c.errors)
+      .forEach(control => {
+        Object.keys(control.errors).forEach(key => {
+          const error = this.errorMessages.find(err => err.error === key);
+          if (!error) {
+            return;
+          }
+          messages.push(error.format(this.label, control.errors[key]));
+        });
       });
-    });
+
     return messages;
   }
 }
