@@ -65,10 +65,9 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-    this.errorMessages = [
-      ...this.errorMessageService.errorMessages,
-      ...this.customErrorMessages
-    ].reverse();
+    this.errorMessages = this.errorMessageService.errorMessages
+      .concat(this.customErrorMessages)
+      .reverse();
   }
 
   get label() {
@@ -85,15 +84,19 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
     if (!this.isDirtyAndTouched || this.validationDisabled) {
       return messages;
     }
-    this.FormControlNames.filter(c => !c.valid).forEach(control => {
-      Object.keys(control.errors).forEach(key => {
-        const error = this.errorMessages.find(err => err.error === key);
-        if (!error) {
-          return;
-        }
-        messages.push(error.format(this.label, control.errors[key]));
+
+    this.FormControlNames
+      .filter(c => !c.valid && !!c.errors)
+      .forEach(control => {
+        Object.keys(control.errors).forEach(key => {
+          const error = this.errorMessages.find(err => err.error === key);
+          if (!error) {
+            return;
+          }
+          messages.push(error.format(this.label, control.errors[key]));
+        });
       });
-    });
+
     return messages;
   }
 }
