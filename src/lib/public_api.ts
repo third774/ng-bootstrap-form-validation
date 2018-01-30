@@ -8,4 +8,5 @@ export {
 export {
   FormGroupComponent
 } from "./Components/form-group-component/form-group-component";
+export { MessagesComponent } from "./Components/messages/messages.component";
 export * from "./Tokens/tokens";

@@ -82,7 +82,7 @@
     "prefer-const": true,
     "quotemark": [
       true,
-      "single"
+      "double"
     ],
     "radix": true,
     "semicolon": [
@@ -117,13 +117,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "app",
+      ["app", "bfv"],
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "app",
+      ["app", "bfv"],
       "kebab-case"
     ],
     "use-input-property-decorator": true,

@@ -1,24 +1,28 @@
 import {
   Component,
   ContentChildren,
+  ContentChild,
   ElementRef,
   HostBinding,
   Input,
   QueryList,
-  OnInit
+  OnInit,
+  AfterContentInit
 } from "@angular/core";
 import { FormControlName } from "@angular/forms";
 import { ErrorMessage } from "../../Models/ErrorMessage";
 import { ErrorMessageService } from "../../Services/error-message.service";
+import { MessagesComponent } from "../messages/messages.component";
 
 @Component({
+  // tslint:disable:component-selector
   selector: ".form-group",
   template: `
     <ng-content></ng-content>
-    <span class="help-block" *ngFor="let message of messages">{{message}}</span>
+    <bfv-messages *ngIf="!messagesBlock" [messages]="messages"></bfv-messages>
   `
 })
-export class FormGroupComponent implements OnInit {
+export class FormGroupComponent implements OnInit, AfterContentInit {
   @ContentChildren(FormControlName)
   FormControlNames: QueryList<FormControlName>;
 
@@ -43,12 +47,22 @@ export class FormGroupComponent implements OnInit {
     );
   }
 
-  public errorMessages: ErrorMessage[];
+  @ContentChild(MessagesComponent) public messagesBlock: MessagesComponent;
+
+  private errorMessages: ErrorMessage[];
+
+  public messages = () => this.getMessages();
 
   constructor(
     private elRef: ElementRef,
     private errorMessageService: ErrorMessageService
   ) {}
+
+  ngAfterContentInit() {
+    if (this.messagesBlock) {
+      this.messagesBlock.messages = this.messages;
+    }
+  }
 
   ngOnInit() {
     this.errorMessages = [
@@ -66,7 +80,7 @@ export class FormGroupComponent implements OnInit {
     return this.FormControlNames.some(c => c.dirty && c.touched);
   }
 
-  get messages(): string[] {
+  private getMessages(): string[] {
     const messages = [];
     if (!this.isDirtyAndTouched || this.validationDisabled) {
       return messages;
