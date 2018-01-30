@@ -21,6 +21,14 @@ export class NgBootstrapFormValidationModule {
   static forRoot(
     customErrorMessages: ErrorMessage[] = []
   ): ModuleWithProviders {
+    if (customErrorMessages.length) {
+      console.warn(
+        "Deprecation warning: Passing 'customErrorMessages' to " +
+          "the 'forRoot' method is deprecated and will be removed in a future " +
+          "release. Please use the 'CUSTOM_ERROR_MESSAGES' multi-provider."
+      );
+    }
+
     return {
       ngModule: NgBootstrapFormValidationModule,
       providers: [
