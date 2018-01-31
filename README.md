@@ -146,9 +146,9 @@ Note: the `<bfv-messsages></bfv-messages>` component still *must* be placed with
 
 ## Custom Error Messages
 
-### Global Custom Errors
+### Module Level Custom Errors
 
-Optionally, you can pass an `ErrorMessage` array into the `.forRoot()` method in your `app.module.ts` to provide custom errors across your entire app. In order for this to be AOT compatable, the function definitions **must** be exported. see below for an example
+You can provide an `ErrorMessage` array via the `CUSTOM_ERROR_MESSAGES` multi-provider in your module to provide custom errors across your module/app. In order for this to be AOT compatable, the function definitions **must** be exported. see below for an example
 
 `custom-errors.ts`
 ```ts
@@ -179,7 +179,10 @@ import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
-import {NgBootstrapFormValidationModule} from "ng-bootstrap-form-validation";
+import {
+  NgBootstrapFormValidationModule,
+  CUSTOM_ERROR_MESSAGES
+} from "ng-bootstrap-form-validation";
 import {AppComponent} from "./app.component";
 import {CUSTOM_ERRORS} from "./custom-errors";
 
@@ -191,10 +194,14 @@ import {CUSTOM_ERRORS} from "./custom-errors";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    NgBootstrapFormValidationModule.forRoot(CUSTOM_ERRORS),
+    NgBootstrapFormValidationModule.forRoot(),
     HttpModule
   ],
-  providers: [],
+  providers: [{
+    provide: CUSTOM_ERROR_MESSAGES,
+    useValue: CUSTOM_ERRORS,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

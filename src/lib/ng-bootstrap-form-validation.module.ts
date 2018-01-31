@@ -25,7 +25,8 @@ export class NgBootstrapFormValidationModule {
       console.warn(
         "Deprecation warning: Passing 'customErrorMessages' to " +
           "the 'forRoot' method is deprecated and will be removed in a future " +
-          "release. Please use the 'CUSTOM_ERROR_MESSAGES' multi-provider."
+          "release. Please use the 'CUSTOM_ERROR_MESSAGES' multi-provider, see: " +
+          "https://github.com/third774/ng-bootstrap-form-validation#module-level-custom-errors"
       );
     }
 
