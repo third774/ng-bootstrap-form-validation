@@ -14,6 +14,7 @@ import { FormGroup } from "@angular/forms";
 export class FormValidationDirective implements OnInit {
   @Input() formGroup: FormGroup;
   @Output() validSubmit = new EventEmitter<any>();
+  @Output() anySubmit = new EventEmitter<any>();
 
   @HostListener("submit")
   onSubmit() {
@@ -21,6 +22,7 @@ export class FormValidationDirective implements OnInit {
     if (this.formGroup.valid) {
       this.validSubmit.emit(this.formGroup.value);
     }
+    this.anySubmit.emit(this.formGroup.value);
   }
 
   markAsTouchedAndDirty(formGroup: FormGroup) {
