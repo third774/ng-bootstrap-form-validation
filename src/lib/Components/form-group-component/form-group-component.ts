@@ -92,7 +92,7 @@ export class FormGroupComponent implements AfterContentInit, OnDestroy {
         this.form.anySubmit.subscribe(() => (this.showFeedback = true))
       );
     }
-    this.FormControlNames.forEach(c =>
+    this.FormControlNames.forEach(c => {
       this.subscriptions.push(
         c.statusChanges
           .filter(status => status === "INVALID")
@@ -106,16 +106,20 @@ export class FormGroupComponent implements AfterContentInit, OnDestroy {
             this.lazyFeedback = false;
             this.showFeedback = true;
           })
-      )
-    );
-    this.FormControlNames.forEach(c =>
+      );
       this.subscriptions.push(
         c.statusChanges.filter(status => status === "VALID").subscribe(() => {
           this.lazyFeedback = true;
           this.showFeedback = true;
         })
-      )
-    );
+      );
+      this.subscriptions.push(
+        c.statusChanges.filter(status => status === "PENDING").subscribe(() => {
+          this.lazyFeedback = false;
+          this.showFeedback = true;
+        })
+      );
+    });
     if (this.messagesBlock) {
       this.messagesBlock.messages = this.messages;
     }
