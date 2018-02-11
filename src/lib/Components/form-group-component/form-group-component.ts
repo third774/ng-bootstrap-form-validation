@@ -70,9 +70,9 @@ export class FormGroupComponent implements AfterContentInit, OnDestroy {
 
   @ContentChild(MessagesComponent) public messagesBlock: MessagesComponent;
 
-  private showFeedback = false;
   public messages: () => string[];
-  private eagerValidation = true;
+  private showFeedback = false;
+  private lazyFeedback = true;
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -97,13 +97,13 @@ export class FormGroupComponent implements AfterContentInit, OnDestroy {
         c.statusChanges
           .filter(status => status === "INVALID")
           .do(() => {
-            if (!this.eagerValidation) {
+            if (this.lazyFeedback) {
               this.showFeedback = false;
             }
           })
           .debounceTime(500)
           .subscribe(() => {
-            this.eagerValidation = true;
+            this.lazyFeedback = false;
             this.showFeedback = true;
           })
       )
@@ -111,7 +111,7 @@ export class FormGroupComponent implements AfterContentInit, OnDestroy {
     this.FormControlNames.forEach(c =>
       this.subscriptions.push(
         c.statusChanges.filter(status => status === "VALID").subscribe(() => {
-          this.eagerValidation = false;
+          this.lazyFeedback = true;
           this.showFeedback = true;
         })
       )
