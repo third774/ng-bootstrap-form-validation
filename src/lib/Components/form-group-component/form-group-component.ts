@@ -1,27 +1,27 @@
 import {
   Component,
+  AfterContentInit,
+  OnDestroy,
   ContentChildren,
   ContentChild,
   ElementRef,
   HostBinding,
   Input,
   QueryList,
-  AfterContentInit,
   Inject,
   Host,
-  Optional,
-  OnDestroy
+  Optional
 } from "@angular/core";
 import { FormControlName } from "@angular/forms";
 import { ErrorMessage } from "../../Models/ErrorMessage";
 import { ErrorMessageService } from "../../Services/error-message.service";
 import { MessagesComponent } from "../messages/messages.component";
 import { FormValidationDirective } from "../../Directives";
+import { Subscription } from "rxjs/Subscription";
 
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/debounceTime";
-import { Subscription } from "rxjs/Subscription";
 
 @Component({
   // tslint:disable:component-selector
