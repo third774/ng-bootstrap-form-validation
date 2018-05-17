@@ -14,7 +14,6 @@ import { CUSTOM_ERROR_MESSAGES } from "./Tokens/tokens";
     MessagesComponent
   ],
   imports: [CommonModule],
-  providers: [ErrorMessageService],
   exports: [FormValidationDirective, FormGroupComponent, MessagesComponent]
 })
 export class NgBootstrapFormValidationModule {
