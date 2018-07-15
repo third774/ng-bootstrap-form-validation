@@ -17,26 +17,28 @@ import { CUSTOM_ERROR_MESSAGES } from "./Tokens/tokens";
   exports: [FormValidationDirective, FormGroupComponent, MessagesComponent]
 })
 export class NgBootstrapFormValidationModule {
-  static forRoot(customErrorMessages?: ErrorMessage[]): ModuleWithProviders {
+  static forRoot(
+    customErrorMessages: ErrorMessage[] = []
+  ): ModuleWithProviders {
+    if (customErrorMessages.length) {
+      console.warn(
+        "Deprecation warning: Passing 'customErrorMessages' to " +
+          "the 'forRoot' method is deprecated and will be removed in a future " +
+          "release. Please use the 'CUSTOM_ERROR_MESSAGES' multi-provider, see: " +
+          "https://github.com/third774/ng-bootstrap-form-validation#module-level-custom-errors"
+      );
+    }
+
     return {
       ngModule: NgBootstrapFormValidationModule,
       providers: [
-        {
-          provide: ErrorMessageService,
-          useFactory: errorMessageServiceFactory,
-          deps: [CUSTOM_ERROR_MESSAGES]
-        },
+        ErrorMessageService,
         {
           provide: CUSTOM_ERROR_MESSAGES,
-          useValue: customErrorMessages
+          useValue: customErrorMessages,
+          multi: true
         }
       ]
     };
   }
-}
-
-export function errorMessageServiceFactory(
-  customErrorMessages?: ErrorMessage[]
-) {
-  return new ErrorMessageService(customErrorMessages);
 }

@@ -7,12 +7,14 @@ import { CUSTOM_ERROR_MESSAGES } from "../Tokens/tokens";
 export class ErrorMessageService {
   private defaultErrors = DEFAULT_ERRORS;
 
-  constructor(
-    @Inject(CUSTOM_ERROR_MESSAGES)
-    public customErrorMessages: ErrorMessage[] = []
-  ) {}
+  public errorMessages: ErrorMessage[];
 
-  get errorMessages() {
-    return [...this.customErrorMessages, ...this.defaultErrors];
+  constructor(
+    @Inject(CUSTOM_ERROR_MESSAGES) public customErrorMessages: ErrorMessage[][]
+  ) {
+    this.errorMessages = customErrorMessages.reduce(
+      (acc, cur) => acc.concat(cur),
+      this.defaultErrors
+    );
   }
 }

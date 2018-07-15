@@ -6,6 +6,7 @@ import {
   HostBinding,
   Input,
   QueryList,
+  OnInit,
   AfterContentInit
 } from "@angular/core";
 import { FormControlName } from "@angular/forms";
@@ -21,7 +22,7 @@ import { MessagesComponent } from "../messages/messages.component";
     <bfv-messages *ngIf="!messagesBlock" [messages]="messages"></bfv-messages>
   `
 })
-export class FormGroupComponent implements AfterContentInit {
+export class FormGroupComponent implements OnInit, AfterContentInit {
   @ContentChildren(FormControlName)
   FormControlNames: QueryList<FormControlName>;
 
@@ -48,19 +49,25 @@ export class FormGroupComponent implements AfterContentInit {
 
   @ContentChild(MessagesComponent) public messagesBlock: MessagesComponent;
 
-  public messages: () => string[];
+  private errorMessages: ErrorMessage[];
+
+  public messages = () => this.getMessages();
 
   constructor(
     private elRef: ElementRef,
     private errorMessageService: ErrorMessageService
-  ) {
-    this.messages = () => this.getMessages();
-  }
+  ) {}
 
   ngAfterContentInit() {
     if (this.messagesBlock) {
       this.messagesBlock.messages = this.messages;
     }
+  }
+
+  ngOnInit() {
+    this.errorMessages = this.errorMessageService.errorMessages
+      .concat(this.customErrorMessages)
+      .reverse();
   }
 
   get label() {
@@ -70,12 +77,6 @@ export class FormGroupComponent implements AfterContentInit {
 
   get isDirtyAndTouched() {
     return this.FormControlNames.some(c => c.dirty && c.touched);
-  }
-
-  get errorMessages(): ErrorMessage[] {
-    return this.customErrorMessages.concat(
-      this.errorMessageService.errorMessages
-    );
   }
 
   private getMessages(): string[] {
