@@ -85,10 +85,6 @@
       "double"
     ],
     "radix": true,
-    "semicolon": [
-      true,
-      "always"
-    ],
     "triple-equals": [
       true,
       "allow-null-check"
