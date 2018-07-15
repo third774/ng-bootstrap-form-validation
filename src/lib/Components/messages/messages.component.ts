@@ -1,13 +1,20 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Inject } from "@angular/core";
+import { ErrorMessageService } from "../../Services/error-message.service";
 
 @Component({
   selector: "bfv-messages",
   template: `
-    <span class="help-block" *ngFor="let message of messages()">{{message}}</span>
+    <span [ngClass]="className" *ngFor="let message of messages()">{{message}}</span>
   `
 })
 export class MessagesComponent {
   @Input() public messages = () => [];
 
-  constructor() {}
+  get className() {
+    return this.errorMessageService.errorClassName;
+  }
+
+  constructor(private errorMessageService: ErrorMessageService) {
+    console.log(errorMessageService);
+  }
 }
