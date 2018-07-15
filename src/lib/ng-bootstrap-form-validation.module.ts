@@ -31,7 +31,7 @@ export class NgBootstrapFormValidationModule {
   ): ModuleWithProviders {
     const mergedOptions = {
       ...OPTIONS_DEFAULTS,
-      userOptions
+      ...userOptions
     };
     if (mergedOptions.customErrorMessages.length) {
       console.warn(
