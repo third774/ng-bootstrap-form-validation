@@ -6,6 +6,7 @@ import { MessagesComponent } from "./Components/messages/messages.component";
 import { ErrorMessageService } from "./Services/error-message.service";
 import { ErrorMessage } from "./Models/ErrorMessage";
 import { CUSTOM_ERROR_MESSAGES } from "./Tokens/tokens";
+import { NgBootstrapFormValidationModuleOptions } from "./Models/NgBootstrapFormValidationModuleOptions";
 
 @NgModule({
   declarations: [
@@ -18,9 +19,11 @@ import { CUSTOM_ERROR_MESSAGES } from "./Tokens/tokens";
 })
 export class NgBootstrapFormValidationModule {
   static forRoot(
-    customErrorMessages: ErrorMessage[] = []
+    options: NgBootstrapFormValidationModuleOptions = {
+      customErrorMessages: []
+    }
   ): ModuleWithProviders {
-    if (customErrorMessages.length) {
+    if (options.customErrorMessages.length) {
       console.warn(
         "Deprecation warning: Passing 'customErrorMessages' to " +
           "the 'forRoot' method is deprecated and will be removed in a future " +
@@ -35,7 +38,7 @@ export class NgBootstrapFormValidationModule {
         ErrorMessageService,
         {
           provide: CUSTOM_ERROR_MESSAGES,
-          useValue: customErrorMessages,
+          useValue: options.customErrorMessages,
           multi: true
         }
       ]
