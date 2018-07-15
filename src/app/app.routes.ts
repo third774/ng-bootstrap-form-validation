@@ -1,10 +1,15 @@
 import { Routes } from "@angular/router";
-import { DefaultErrorsDemoComponent } from "./default-errors-demo/default-errors-demo.component";
+import { BootstrapFourComponent } from "./bootstrap-four/bootstrap-four.component";
+import { BootstrapThreeComponent } from "./bootstrap-three/bootstrap-three.component";
 
 export const appRoutes: Routes = [
   {
     path: "bootstrap-3",
-    component: DefaultErrorsDemoComponent
+    component: BootstrapThreeComponent
+  },
+  {
+    path: "bootstrap-4",
+    component: BootstrapFourComponent
   },
   {
     path: "",
