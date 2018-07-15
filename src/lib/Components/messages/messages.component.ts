@@ -14,7 +14,5 @@ export class MessagesComponent {
     return this.errorMessageService.errorClassName;
   }
 
-  constructor(private errorMessageService: ErrorMessageService) {
-    console.log(errorMessageService);
-  }
+  constructor(private errorMessageService: ErrorMessageService) {}
 }
