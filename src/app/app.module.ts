@@ -11,6 +11,8 @@ import { NgBootstrapFormValidationModule } from "../lib/ng-bootstrap-form-valida
 import { NavBarComponent } from "./nav-bar/nav-bar.component";
 import { BootstrapFourComponent } from "./bootstrap-four/bootstrap-four.component";
 import { BootstrapThreeComponent } from "./bootstrap-three/bootstrap-three.component";
+import { BootstrapFourNavComponent } from "./bootstrap-four-nav/bootstrap-four-nav.component";
+import { BootstrapFourBasicComponent } from "./bootstrap-four-basic/bootstrap-four-basic.component";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { BootstrapThreeComponent } from "./bootstrap-three/bootstrap-three.compo
     DefaultErrorsDemoComponent,
     NavBarComponent,
     BootstrapFourComponent,
-    BootstrapThreeComponent
+    BootstrapThreeComponent,
+    BootstrapFourNavComponent,
+    BootstrapFourBasicComponent
   ],
   imports: [
     BrowserModule,
