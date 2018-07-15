@@ -4,9 +4,17 @@ import { FormValidationDirective } from "./Directives/form-validation.directive"
 import { FormGroupComponent } from "./Components/form-group-component/form-group-component";
 import { MessagesComponent } from "./Components/messages/messages.component";
 import { ErrorMessageService } from "./Services/error-message.service";
-import { ErrorMessage } from "./Models/ErrorMessage";
-import { CUSTOM_ERROR_MESSAGES } from "./Tokens/tokens";
+import {
+  CUSTOM_ERROR_MESSAGES,
+  NG_BOOTSTRAP_FORM_VALIDATION_MODULE_OPTIONS
+} from "./Tokens/tokens";
 import { NgBootstrapFormValidationModuleOptions } from "./Models/NgBootstrapFormValidationModuleOptions";
+import { BootstrapVersion } from "./Enums/BootstrapVersion";
+
+const OPTIONS_DEFAULTS: NgBootstrapFormValidationModuleOptions = {
+  customErrorMessages: [],
+  bootstrapVersion: BootstrapVersion.Four
+};
 
 @NgModule({
   declarations: [
@@ -19,11 +27,13 @@ import { NgBootstrapFormValidationModuleOptions } from "./Models/NgBootstrapForm
 })
 export class NgBootstrapFormValidationModule {
   static forRoot(
-    options: NgBootstrapFormValidationModuleOptions = {
-      customErrorMessages: []
-    }
+    userOptions?: NgBootstrapFormValidationModuleOptions
   ): ModuleWithProviders {
-    if (options.customErrorMessages.length) {
+    const mergedOptions = {
+      ...OPTIONS_DEFAULTS,
+      userOptions
+    };
+    if (mergedOptions.customErrorMessages.length) {
       console.warn(
         "Deprecation warning: Passing 'customErrorMessages' to " +
           "the 'forRoot' method is deprecated and will be removed in a future " +
@@ -38,8 +48,13 @@ export class NgBootstrapFormValidationModule {
         ErrorMessageService,
         {
           provide: CUSTOM_ERROR_MESSAGES,
-          useValue: options.customErrorMessages,
+          useValue: mergedOptions.customErrorMessages,
           multi: true
+        },
+        {
+          provide: NG_BOOTSTRAP_FORM_VALIDATION_MODULE_OPTIONS,
+          useValue: mergedOptions,
+          multi: false
         }
       ]
     };
