@@ -85,9 +85,8 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
       return messages;
     }
 
-    this.FormControlNames
-      .filter(c => !c.valid && !!c.errors)
-      .forEach(control => {
+    this.FormControlNames.filter(c => !c.valid && !!c.errors).forEach(
+      control => {
         Object.keys(control.errors).forEach(key => {
           const error = this.errorMessages.find(err => err.error === key);
           if (!error) {
@@ -95,7 +94,8 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
           }
           messages.push(error.format(this.label, control.errors[key]));
         });
-      });
+      }
+    );
 
     return messages;
   }
