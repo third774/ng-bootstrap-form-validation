@@ -13,6 +13,7 @@ import { BootstrapFourComponent } from "./bootstrap-four/bootstrap-four.componen
 import { BootstrapThreeComponent } from "./bootstrap-three/bootstrap-three.component";
 import { BootstrapFourNavComponent } from "./bootstrap-four-nav/bootstrap-four-nav.component";
 import { BootstrapFourBasicComponent } from "./bootstrap-four-basic/bootstrap-four-basic.component";
+import { FormControlDirective } from "./form-control.directive";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BootstrapFourBasicComponent } from "./bootstrap-four-basic/bootstrap-fo
     BootstrapFourComponent,
     BootstrapThreeComponent,
     BootstrapFourNavComponent,
-    BootstrapFourBasicComponent
+    BootstrapFourBasicComponent,
+    FormControlDirective
   ],
   imports: [
     BrowserModule,
