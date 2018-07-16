@@ -8,7 +8,7 @@ import { AppComponent } from "./app.component";
 import { DefaultErrorsDemoComponent } from "./default-errors-demo/default-errors-demo.component";
 
 import { NgBootstrapFormValidationModule } from "../lib/ng-bootstrap-form-validation.module";
-import { NavBarComponent } from "./nav-bar/nav-bar.component";
+import { BootstrapThreeNavComponent } from "./bootstrap-three-nav/bootstrap-three-nav.component";
 import { BootstrapFourComponent } from "./bootstrap-four/bootstrap-four.component";
 import { BootstrapThreeComponent } from "./bootstrap-three/bootstrap-three.component";
 import { BootstrapFourNavComponent } from "./bootstrap-four-nav/bootstrap-four-nav.component";
@@ -19,7 +19,7 @@ import { FormControlDirective } from "./form-control.directive";
   declarations: [
     AppComponent,
     DefaultErrorsDemoComponent,
-    NavBarComponent,
+    BootstrapThreeNavComponent,
     BootstrapFourComponent,
     BootstrapThreeComponent,
     BootstrapFourNavComponent,
