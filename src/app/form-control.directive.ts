@@ -25,6 +25,9 @@ export class FormControlDirective implements OnInit {
 
   @HostBinding("class.is-valid")
   get validClass() {
+    if (!this.control) {
+      return false;
+    }
     return (
       this.bootstrapFour &&
       this.control.valid &&
@@ -34,6 +37,9 @@ export class FormControlDirective implements OnInit {
 
   @HostBinding("class.is-invalid")
   get invalidClass() {
+    if (!this.control) {
+      return false;
+    }
     return (
       this.bootstrapFour &&
       this.control.invalid &&
