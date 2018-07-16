@@ -8,7 +8,7 @@ import { ErrorMessageService } from "../../Services/error-message.service";
   `,
   styles: [
     `
-    span {
+    .invalid-feedback, .valid-feedback {
       display: block;
     }
   `
