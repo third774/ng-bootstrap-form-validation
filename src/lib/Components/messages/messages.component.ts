@@ -5,7 +5,14 @@ import { ErrorMessageService } from "../../Services/error-message.service";
   selector: "bfv-messages",
   template: `
     <span [ngClass]="className" *ngFor="let message of messages()">{{message}}</span>
+  `,
+  styles: [
+    `
+    span {
+      display: block;
+    }
   `
+  ]
 })
 export class MessagesComponent {
   @Input() public messages = () => [];
