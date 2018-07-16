@@ -17,7 +17,7 @@ export function controlPath(name: string, parent: ControlContainer): string[] {
 }
 
 @Directive({
-  selector: ".form-control"
+  selector: ".form-control,.form-check-input,.custom-control-input"
 })
 export class FormControlDirective implements OnInit {
   @Input() formControlName: string;
