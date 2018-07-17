@@ -15,9 +15,6 @@ export class BootstrapFourComponent implements OnInit, OnDestroy {
     this.link.href =
       "https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css";
     this.link.rel = "stylesheet";
-    this.link.integrity =
-      "sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B";
-    this.link.crossOrigin = "anonymous";
     document.head.appendChild(this.link);
   }
 
