@@ -6,7 +6,7 @@
     "ng-bootstrap-form-validation": {
       "root": "",
       "sourceRoot": "src",
-      "projectType": "application",
+      "projectType": "library",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
