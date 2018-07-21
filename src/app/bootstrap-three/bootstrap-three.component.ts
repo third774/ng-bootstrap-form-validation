@@ -1,9 +1,34 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
+import {
+  BOOTSTRAP_VERSION,
+  CUSTOM_ERROR_MESSAGES,
+  ErrorMessage
+} from "../../lib/public_api";
+import { BootstrapVersion } from "../../lib/Enums/BootstrapVersion";
+
+export const required: ErrorMessage = {
+  error: "required",
+  format: () => "FUCKING REQUIRED"
+};
+
+export const messages = [required];
 
 @Component({
   selector: "app-bootstrap-three",
   templateUrl: "./bootstrap-three.component.html",
-  styleUrls: ["./bootstrap-three.component.css"]
+  styleUrls: ["./bootstrap-three.component.css"],
+  providers: [
+    {
+      provide: BOOTSTRAP_VERSION,
+      useValue: { bootstrapVersion: BootstrapVersion.Three },
+      multi: true
+    },
+    {
+      provide: CUSTOM_ERROR_MESSAGES,
+      useValue: messages,
+      multi: true
+    }
+  ]
 })
 export class BootstrapThreeComponent implements OnInit, OnDestroy {
   link: HTMLLinkElement;

@@ -1,11 +1,7 @@
 import { Inject, Injectable } from "@angular/core";
 import { ErrorMessage } from "../Models/ErrorMessage";
 import { DEFAULT_ERRORS } from "../default-errors";
-import {
-  CUSTOM_ERROR_MESSAGES,
-  NG_BOOTSTRAP_FORM_VALIDATION_MODULE_OPTIONS
-} from "../Tokens/tokens";
-import { NgBootstrapFormValidationModuleOptions } from "../Models/NgBootstrapFormValidationModuleOptions";
+import { CUSTOM_ERROR_MESSAGES, BOOTSTRAP_VERSION } from "../Tokens/tokens";
 import { BootstrapVersion } from "../Enums/BootstrapVersion";
 
 @Injectable()
@@ -16,9 +12,9 @@ export class ErrorMessageService {
 
   constructor(
     @Inject(CUSTOM_ERROR_MESSAGES) public customErrorMessages: ErrorMessage[][],
-    @Inject(NG_BOOTSTRAP_FORM_VALIDATION_MODULE_OPTIONS)
-    public moduleOptions: NgBootstrapFormValidationModuleOptions
+    @Inject(BOOTSTRAP_VERSION) public bootstrapVersion: BootstrapVersion
   ) {
+    console.log(bootstrapVersion);
     this.errorMessages = customErrorMessages.reduce(
       (acc, cur) => acc.concat(cur),
       this.defaultErrors
@@ -26,7 +22,7 @@ export class ErrorMessageService {
   }
 
   get errorClassName() {
-    switch (this.moduleOptions.bootstrapVersion) {
+    switch (this.bootstrapVersion[0]) {
       case BootstrapVersion.Three:
         return "help-block";
       case BootstrapVersion.Four:

@@ -7,9 +7,9 @@ import {
   SkipSelf,
   OnInit
 } from "@angular/core";
-import { FormControlName, ControlContainer, FormControl } from "@angular/forms";
-import { ErrorMessageService } from "../lib/Services";
-import { BootstrapVersion } from "../lib/Enums/BootstrapVersion";
+import { ControlContainer, FormControl } from "@angular/forms";
+import { ErrorMessageService } from "../Services";
+import { BootstrapVersion } from "../Enums/BootstrapVersion";
 
 export function controlPath(name: string, parent: ControlContainer): string[] {
   // tslint:disable-next-line:no-non-null-assertion
@@ -61,10 +61,7 @@ export class FormControlDirective implements OnInit {
   }
 
   get bootstrapFour() {
-    return (
-      this.errorMessageService.moduleOptions.bootstrapVersion ===
-      BootstrapVersion.Four
-    );
+    return this.errorMessageService.bootstrapVersion === BootstrapVersion.Four;
   }
 
   constructor(

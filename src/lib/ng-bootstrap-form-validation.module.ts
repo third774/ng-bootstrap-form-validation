@@ -1,13 +1,11 @@
 import { CommonModule } from "@angular/common";
 import { NgModule, ModuleWithProviders } from "@angular/core";
 import { FormValidationDirective } from "./Directives/form-validation.directive";
+import { FormControlDirective } from "./Directives/form-control.directive";
 import { FormGroupComponent } from "./Components/form-group-component/form-group-component";
 import { MessagesComponent } from "./Components/messages/messages.component";
 import { ErrorMessageService } from "./Services/error-message.service";
-import {
-  CUSTOM_ERROR_MESSAGES,
-  NG_BOOTSTRAP_FORM_VALIDATION_MODULE_OPTIONS
-} from "./Tokens/tokens";
+import { CUSTOM_ERROR_MESSAGES, BOOTSTRAP_VERSION } from "./Tokens/tokens";
 import { NgBootstrapFormValidationModuleOptions } from "./Models/NgBootstrapFormValidationModuleOptions";
 import { BootstrapVersion } from "./Enums/BootstrapVersion";
 
@@ -20,10 +18,16 @@ const OPTIONS_DEFAULTS: NgBootstrapFormValidationModuleOptions = {
   declarations: [
     FormValidationDirective,
     FormGroupComponent,
-    MessagesComponent
+    MessagesComponent,
+    FormControlDirective
   ],
   imports: [CommonModule],
-  exports: [FormValidationDirective, FormGroupComponent, MessagesComponent]
+  exports: [
+    FormValidationDirective,
+    FormGroupComponent,
+    MessagesComponent,
+    FormControlDirective
+  ]
 })
 export class NgBootstrapFormValidationModule {
   static forRoot(
@@ -52,9 +56,9 @@ export class NgBootstrapFormValidationModule {
           multi: true
         },
         {
-          provide: NG_BOOTSTRAP_FORM_VALIDATION_MODULE_OPTIONS,
-          useValue: mergedOptions,
-          multi: false
+          provide: BOOTSTRAP_VERSION,
+          useValue: mergedOptions.bootstrapVersion,
+          multi: true
         }
       ]
     };
