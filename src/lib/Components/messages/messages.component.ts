@@ -1,5 +1,6 @@
-import { Component, Input } from "@angular/core";
-import { ErrorMessageService } from "../../Services/error-message.service";
+import { Component, Input, Inject } from "@angular/core";
+import { BootstrapVersion } from "../../../lib/Enums/BootstrapVersion";
+import { BOOTSTRAP_VERSION } from "../../Tokens/tokens";
 
 @Component({
   selector: "bfv-messages",
@@ -18,8 +19,17 @@ export class MessagesComponent {
   @Input() public messages = () => [];
 
   get className() {
-    return this.errorMessageService.errorClassName;
+    switch (this.bootstrapVersion) {
+      case BootstrapVersion.Three:
+        return "help-block";
+      case BootstrapVersion.Four:
+        return "invalid-feedback";
+    }
   }
 
-  constructor(private errorMessageService: ErrorMessageService) {}
+  constructor(
+    @Inject(BOOTSTRAP_VERSION) private bootstrapVersion: BootstrapVersion
+  ) {
+    console.log(bootstrapVersion);
+  }
 }

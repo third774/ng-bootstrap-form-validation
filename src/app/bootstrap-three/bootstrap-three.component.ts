@@ -6,13 +6,6 @@ import {
 } from "../../lib/public_api";
 import { BootstrapVersion } from "../../lib/Enums/BootstrapVersion";
 
-export const required: ErrorMessage = {
-  error: "required",
-  format: () => "FUCKING REQUIRED"
-};
-
-export const messages = [required];
-
 @Component({
   selector: "app-bootstrap-three",
   templateUrl: "./bootstrap-three.component.html",
@@ -20,13 +13,7 @@ export const messages = [required];
   providers: [
     {
       provide: BOOTSTRAP_VERSION,
-      useValue: { bootstrapVersion: BootstrapVersion.Three },
-      multi: true
-    },
-    {
-      provide: CUSTOM_ERROR_MESSAGES,
-      useValue: messages,
-      multi: true
+      useValue: BootstrapVersion.Three
     }
   ]
 })
