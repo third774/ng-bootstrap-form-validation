@@ -7,25 +7,17 @@ import { appRoutes } from "./app.routes";
 import { AppComponent } from "./app.component";
 
 import { NgBootstrapFormValidationModule } from "../lib/ng-bootstrap-form-validation.module";
-import { BootstrapFourComponent } from "./bootstrap-four/bootstrap-four.component";
-import { BootstrapFourNavComponent } from "./bootstrap-four-nav/bootstrap-four-nav.component";
-import { BootstrapFourBasicComponent } from "./bootstrap-four-basic/bootstrap-four-basic.component";
 import { BootstrapThreeModule } from "./bootstrap-three/bootstrap-three.module";
-import { BOOTSTRAP_VERSION } from "../lib/public_api";
-import { BootstrapVersion } from "../lib/Enums/BootstrapVersion";
+import { BootstrapFourModule } from "./bootstrap-four/bootstrap-four.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    BootstrapFourComponent,
-    BootstrapFourNavComponent,
-    BootstrapFourBasicComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     BootstrapThreeModule,
+    BootstrapFourModule,
     RouterModule.forRoot(appRoutes),
     NgBootstrapFormValidationModule.forRoot()
   ],

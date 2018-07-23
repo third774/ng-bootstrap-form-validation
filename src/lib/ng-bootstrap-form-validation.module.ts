@@ -57,8 +57,7 @@ export class NgBootstrapFormValidationModule {
         },
         {
           provide: BOOTSTRAP_VERSION,
-          useValue: mergedOptions.bootstrapVersion,
-          multi: true
+          useValue: mergedOptions.bootstrapVersion
         }
       ]
     };

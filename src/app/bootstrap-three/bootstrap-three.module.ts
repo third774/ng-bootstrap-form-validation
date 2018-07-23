@@ -30,8 +30,7 @@ import { BootstrapThreeRoutingModule } from "./bootstrap-three.routes";
   providers: [
     {
       provide: BOOTSTRAP_VERSION,
-      useValue: BootstrapVersion.Three,
-      multi: true
+      useValue: BootstrapVersion.Three
     }
   ]
 })
