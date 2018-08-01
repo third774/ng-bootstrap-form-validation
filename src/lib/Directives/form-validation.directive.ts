@@ -4,17 +4,18 @@ import {
   HostListener,
   OnInit,
   EventEmitter,
-  Output
+  Output,
+  HostBinding,
+  OnDestroy
 } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 
 @Directive({
   selector: "form[formGroup]"
 })
-export class FormValidationDirective implements OnInit {
+export class FormValidationDirective implements OnInit, OnDestroy {
   @Input() formGroup: FormGroup;
   @Output() validSubmit = new EventEmitter<any>();
-
   @HostListener("submit")
   onSubmit() {
     this.markAsTouchedAndDirty(this.formGroup);
@@ -39,4 +40,6 @@ export class FormValidationDirective implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+
+  ngOnDestroy() {}
 }

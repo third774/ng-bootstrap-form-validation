@@ -85,10 +85,6 @@
       "double"
     ],
     "radix": true,
-    "semicolon": [
-      true,
-      "always"
-    ],
     "triple-equals": [
       true,
       "allow-null-check"
@@ -113,18 +109,6 @@
       "check-operator",
       "check-separator",
       "check-type"
-    ],
-    "directive-selector": [
-      true,
-      "attribute",
-      ["app", "bfv"],
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      ["app", "bfv"],
-      "kebab-case"
     ],
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,

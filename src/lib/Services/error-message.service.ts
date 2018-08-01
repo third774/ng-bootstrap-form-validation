@@ -1,7 +1,7 @@
 import { Inject, Injectable } from "@angular/core";
 import { ErrorMessage } from "../Models/ErrorMessage";
 import { DEFAULT_ERRORS } from "../default-errors";
-import { CUSTOM_ERROR_MESSAGES } from "../Tokens/tokens";
+import { CUSTOM_ERROR_MESSAGES, BOOTSTRAP_VERSION } from "../Tokens/tokens";
 
 @Injectable()
 export class ErrorMessageService {
