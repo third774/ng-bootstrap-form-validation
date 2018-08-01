@@ -29,7 +29,5 @@ export class MessagesComponent {
 
   constructor(
     @Inject(BOOTSTRAP_VERSION) private bootstrapVersion: BootstrapVersion
-  ) {
-    console.log(bootstrapVersion);
-  }
+  ) {}
 }
