@@ -7,7 +7,8 @@ import { Component, Input } from "@angular/core";
   `
 })
 export class MessagesComponent {
-  @Input() public messages = () => [];
+  @Input()
+  public messages = () => [];
 
   constructor() {}
 }

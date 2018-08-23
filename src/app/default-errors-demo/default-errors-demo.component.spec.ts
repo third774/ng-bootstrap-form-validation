@@ -7,14 +7,12 @@ describe("DefaultErrorsDemoComponent", () => {
   let component: DefaultErrorsDemoComponent;
   let fixture: ComponentFixture<DefaultErrorsDemoComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [FormsModule, ReactiveFormsModule],
-        declarations: [DefaultErrorsDemoComponent]
-      }).compileComponents();
-    })
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [FormsModule, ReactiveFormsModule],
+      declarations: [DefaultErrorsDemoComponent]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DefaultErrorsDemoComponent);

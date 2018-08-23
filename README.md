@@ -217,7 +217,7 @@ export function emailFormat(label: string, error: any): string {
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpModule} from "@angular/http";
+import { HttpClientModule } from '@angular/common/http';
 import {
   NgBootstrapFormValidationModule,
   CUSTOM_ERROR_MESSAGES
@@ -234,7 +234,7 @@ import {CUSTOM_ERRORS} from "./custom-errors";
     FormsModule,
     ReactiveFormsModule,
     NgBootstrapFormValidationModule.forRoot(),
-    HttpModule
+    HttpClientModule
   ],
   providers: [{
     provide: CUSTOM_ERROR_MESSAGES,

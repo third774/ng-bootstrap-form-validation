@@ -1,5 +1,10 @@
 {
-  "$schema": "./node_modules/ng-packagr/ng-package.schema.json",
+  "$schema": "./node_modules/ng-packagr/package.schema.json",
+  "peerDependencies": {
+    "@angular/core": ">=5.0.0",
+    "@angular/common": ">=5.0.0",
+    "@angular/animations": ">=5.0.0"
+  },
   "lib": {
     "entryFile": "src/lib/public_api.ts"
   }

@@ -12,8 +12,10 @@ import { FormGroup } from "@angular/forms";
   selector: "form[formGroup]"
 })
 export class FormValidationDirective implements OnInit {
-  @Input() formGroup: FormGroup;
-  @Output() validSubmit = new EventEmitter<any>();
+  @Input()
+  formGroup: FormGroup;
+  @Output()
+  validSubmit = new EventEmitter<any>();
 
   @HostListener("submit")
   onSubmit() {

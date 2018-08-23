@@ -10,27 +10,25 @@ describe("FormGroupComponent", () => {
   let component: FormGroupComponent;
   let fixture: ComponentFixture<FormGroupComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        declarations: [
-          FormGroupComponent,
-          MockComponent({
-            selector: "bfv-messages",
-            inputs: ["messages"]
-          })
-        ],
-        providers: [
-          ErrorMessageService,
-          {
-            provide: CUSTOM_ERROR_MESSAGES,
-            useValue: [],
-            multi: true
-          }
-        ]
-      }).compileComponents();
-    })
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        FormGroupComponent,
+        MockComponent({
+          selector: "bfv-messages",
+          inputs: ["messages"]
+        })
+      ],
+      providers: [
+        ErrorMessageService,
+        {
+          provide: CUSTOM_ERROR_MESSAGES,
+          useValue: [],
+          multi: true
+        }
+      ]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FormGroupComponent);

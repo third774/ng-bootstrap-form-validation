@@ -9,13 +9,11 @@ describe("MessagesComponent", () => {
   let component: MessagesComponent;
   let fixture: ComponentFixture<MessagesComponent>;
 
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        declarations: [MessagesComponent]
-      }).compileComponents();
-    })
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [MessagesComponent]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(MessagesComponent);

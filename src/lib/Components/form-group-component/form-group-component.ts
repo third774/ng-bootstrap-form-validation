@@ -26,9 +26,11 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
   @ContentChildren(FormControlName)
   FormControlNames: QueryList<FormControlName>;
 
-  @Input() customErrorMessages: ErrorMessage[] = [];
+  @Input()
+  customErrorMessages: ErrorMessage[] = [];
 
-  @Input() validationDisabled = false;
+  @Input()
+  validationDisabled = false;
 
   @HostBinding("class.has-error")
   get hasErrors() {
@@ -47,7 +49,8 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
     );
   }
 
-  @ContentChild(MessagesComponent) public messagesBlock: MessagesComponent;
+  @ContentChild(MessagesComponent)
+  public messagesBlock: MessagesComponent;
 
   private errorMessages: ErrorMessage[];
 
@@ -85,9 +88,8 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
       return messages;
     }
 
-    this.FormControlNames
-      .filter(c => !c.valid && !!c.errors)
-      .forEach(control => {
+    this.FormControlNames.filter(c => !c.valid && !!c.errors).forEach(
+      control => {
         Object.keys(control.errors).forEach(key => {
           const error = this.errorMessages.find(err => err.error === key);
           if (!error) {
@@ -95,7 +97,8 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
           }
           messages.push(error.format(this.label, control.errors[key]));
         });
-      });
+      }
+    );
 
     return messages;
   }

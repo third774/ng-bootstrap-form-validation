@@ -24,19 +24,19 @@ describe("ErrorMessageService", () => {
     });
   });
 
-  it(
-    "should inject ErrorMessageService",
-    inject([ErrorMessageService], (service: ErrorMessageService) => {
+  it("should inject ErrorMessageService", inject(
+    [ErrorMessageService],
+    (service: ErrorMessageService) => {
       expect(service).toBeTruthy();
-    })
-  );
+    }
+  ));
 
   describe("errorMessages()", () => {
-    it(
-      "should return custom errors after default errors",
-      inject([ErrorMessageService], (service: ErrorMessageService) => {
+    it("should return custom errors after default errors", inject(
+      [ErrorMessageService],
+      (service: ErrorMessageService) => {
         expect(service.errorMessages.pop()).toEqual(customRequiredErrorMessage);
-      })
-    );
+      }
+    ));
   });
 });
