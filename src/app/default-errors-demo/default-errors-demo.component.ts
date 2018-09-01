@@ -1,30 +1,37 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, Validators, FormControl } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder
+} from "@angular/forms";
 
 @Component({
   selector: "app-default-errors-demo",
   templateUrl: "./default-errors-demo.component.html",
-  styleUrls: ["./default-errors-demo.component.css"]
+  styleUrls: ["./default-errors-demo.component.scss"]
 })
 export class DefaultErrorsDemoComponent implements OnInit {
-  formGroup = new FormGroup({
-    email: new FormControl("", Validators.email),
-    requiredField: new FormControl("", Validators.required),
-    pattern: new FormControl("", Validators.pattern(/foobar/)),
-    minValue: new FormControl(0, Validators.min(10)),
-    maxValue: new FormControl(10, Validators.max(5))
-  });
+  validationForm: FormGroup;
 
-  constructor() {}
+  constructor(fb: FormBuilder) {
+    this.validationForm = fb.group({
+      email: ["", Validators.email],
+      requiredField: ["", Validators.required],
+      pattern: ["", Validators.pattern(/foobar/)],
+      minValue: [0, Validators.min(10)],
+      maxValue: [10, Validators.max(5)]
+    });
+  }
 
   ngOnInit() {}
 
   handleValidSubmit() {
-    console.log(this.formGroup.value);
+    console.log(this.validationForm.value);
   }
 
   handleReset() {
-    this.formGroup.reset({
+    this.validationForm.reset({
       minValue: 0,
       maxValue: 10
     });

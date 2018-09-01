@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - 8.9.1
 
-script: npm run packagr
+script: ng build --project ng-bootstrap-form-validation
 
 before_deploy: "scripts/travis-deploy-setup.sh && cd dist"
 
