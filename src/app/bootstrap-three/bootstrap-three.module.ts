@@ -1,9 +1,11 @@
+import {
+  NgBootstrapFormValidationModule,
+  BOOTSTRAP_VERSION,
+  BootstrapVersion
+} from "ng-bootstrap-form-validation";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { NgBootstrapFormValidationModule } from "../../lib";
-import { BOOTSTRAP_VERSION } from "../../lib/public_api";
-import { BootstrapVersion } from "../../lib/Enums/BootstrapVersion";
 import { BootstrapThreeNavComponent } from "./bootstrap-three-nav/bootstrap-three-nav.component";
 import { DefaultErrorsDemoComponent } from "./default-errors-demo/default-errors-demo.component";
 import { BootstrapThreeComponent } from "./bootstrap-three.component";

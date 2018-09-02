@@ -1,5 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder
+} from "@angular/forms";
 
 @Component({
   selector: "app-bootstrap-four-basic",
@@ -7,18 +12,20 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
   styleUrls: ["./bootstrap-four-basic.component.css"]
 })
 export class BootstrapFourBasicComponent implements OnInit {
-  formGroup = new FormGroup({
-    firstName: new FormControl("", Validators.required),
-    lastName: new FormControl("", Validators.required),
-    email: new FormControl("", Validators.email),
-    city: new FormControl("", Validators.required),
-    state: new FormControl("", Validators.required),
-    zip: new FormControl("", Validators.required),
-    agreeToTerms: new FormControl(false, Validators.required),
-    bestPet: new FormControl(null, Validators.required)
-  });
+  formGroup: FormGroup;
 
-  constructor() {}
+  constructor(fb: FormBuilder) {
+    this.formGroup = fb.group({
+      firstName: ["", Validators.required],
+      lastName: ["", Validators.required],
+      email: ["", Validators.email],
+      city: ["", Validators.required],
+      state: ["", Validators.required],
+      zip: ["", Validators.required],
+      agreeToTerms: [false, Validators.required],
+      bestPet: [null, Validators.required]
+    });
+  }
 
   ngOnInit() {}
 

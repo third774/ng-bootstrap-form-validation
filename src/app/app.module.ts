@@ -1,12 +1,12 @@
-import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
+import { NgBootstrapFormValidationModule } from "ng-bootstrap-form-validation";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 
 import { appRoutes } from "./app.routes";
 import { AppComponent } from "./app.component";
 
-import { NgBootstrapFormValidationModule } from "../lib/ng-bootstrap-form-validation.module";
 import { BootstrapThreeModule } from "./bootstrap-three/bootstrap-three.module";
 import { BootstrapFourModule } from "./bootstrap-four/bootstrap-four.module";
 
