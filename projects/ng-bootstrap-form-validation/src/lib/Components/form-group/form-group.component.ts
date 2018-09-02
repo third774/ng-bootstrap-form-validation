@@ -1,26 +1,26 @@
 import {
   Component,
-  OnInit,
-  AfterContentInit,
   ContentChildren,
-  QueryList,
-  Input,
-  HostBinding,
   ContentChild,
-  ElementRef
+  ElementRef,
+  HostBinding,
+  Input,
+  QueryList,
+  OnInit,
+  AfterContentInit
 } from "@angular/core";
 import { FormControlName } from "@angular/forms";
-import { MessagesComponent } from "../messages";
+import { ErrorMessageService } from "../../Services/error-message.service";
+import { MessagesComponent } from "../messages/messages.component";
 import { ErrorMessage } from "../../Models";
-import { ErrorMessageService } from "../../Services";
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // tslint:disable:component-selector
   selector: ".form-group",
   template: `
-  <ng-content></ng-content>
-  <bfv-messages *ngIf="!messagesBlock" [messages]="messages"></bfv-messages>
-`
+    <ng-content></ng-content>
+    <bfv-messages *ngIf="!messagesBlock" [messages]="messages"></bfv-messages>
+  `
 })
 export class FormGroupComponent implements OnInit, AfterContentInit {
   @ContentChildren(FormControlName)
@@ -88,17 +88,23 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
       return messages;
     }
 
-    this.FormControlNames.filter(c => !c.valid && !!c.errors).forEach(
-      control => {
-        Object.keys(control.errors).forEach(key => {
-          const error = this.errorMessages.find(err => err.error === key);
-          if (!error) {
-            return;
-          }
-          messages.push(error.format(this.label, control.errors[key]));
-        });
-      }
-    );
+    const names = this.FormControlNames.map(f => f.name);
+
+    this.FormControlNames.filter(
+      (c, i) =>
+        !c.valid &&
+        !!c.errors &&
+        // filter out FormControlNames that share the same name - usually for radio buttons
+        names.indexOf(c.name) === i
+    ).forEach(control => {
+      Object.keys(control.errors).forEach(key => {
+        const error = this.errorMessages.find(err => err.error === key);
+        if (!error) {
+          return;
+        }
+        messages.push(error.format(this.label, control.errors[key]));
+      });
+    });
 
     return messages;
   }
