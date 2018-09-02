@@ -1,30 +1,20 @@
+import { RouterTestingModule } from "@angular/router/testing";
 import { TestBed, async } from "@angular/core/testing";
-
 import { AppComponent } from "./app.component";
-import { NavBarComponent } from "./nav-bar/nav-bar.component";
-import { DefaultErrorsDemoComponent } from "./default-errors-demo/default-errors-demo.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { DefaultErrorsDemoComponent } from "./bootstrap-three/default-errors-demo/default-errors-demo.component";
 
 describe("AppComponent", () => {
-  beforeEach(
-    async(() => {
-      TestBed.configureTestingModule({
-        imports: [FormsModule, ReactiveFormsModule],
-        declarations: [
-          AppComponent,
-          NavBarComponent,
-          DefaultErrorsDemoComponent
-        ]
-      }).compileComponents();
-    })
-  );
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [AppComponent]
+    }).compileComponents();
+  }));
 
-  it(
-    "should create the app",
-    async(() => {
-      const fixture = TestBed.createComponent(AppComponent);
-      const app = fixture.debugElement.componentInstance;
-      expect(app).toBeTruthy();
-    })
-  );
+  it("should create the app", async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
 });

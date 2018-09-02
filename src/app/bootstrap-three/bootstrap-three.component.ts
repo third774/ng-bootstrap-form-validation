@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import {
   BOOTSTRAP_VERSION,
-  CUSTOM_ERROR_MESSAGES,
-  ErrorMessage
-} from "../../lib/public_api";
-import { BootstrapVersion } from "../../lib/Enums/BootstrapVersion";
+  BootstrapVersion
+} from "ng-bootstrap-form-validation";
 
 @Component({
   selector: "app-bootstrap-three",
