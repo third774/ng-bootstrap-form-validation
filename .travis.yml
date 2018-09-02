@@ -4,7 +4,7 @@ node_js:
 
 script: ng build --project ng-bootstrap-form-validation
 
-before_deploy: "scripts/travis-deploy-setup.sh && cd dist"
+before_deploy: "scripts/travis-deploy-setup.sh && cd dist/ng-bootstrap-form-validation"
 
 deploy:
   - provider: npm
