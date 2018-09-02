@@ -3,9 +3,14 @@ const path = require("path");
 
 const { PWD, TRAVIS_COMMIT } = process.env;
 
-const packageJson = JSON.parse(
-  fs.readFileSync(path.join(PWD, "dist", "package.json"), "utf8")
+const filePath = path.join(
+  PWD,
+  "dist",
+  "ng-bootstrap-form-validation",
+  "package.json"
 );
+
+const packageJson = JSON.parse(fs.readFileSync(filePath, "utf8"));
 
 const now = new Date();
 const timeStr = now.toISOString().replace(/:|T|\.|-/g, "");
@@ -17,7 +22,7 @@ const updatedPackageJson = {
 };
 
 fs.writeFileSync(
-  path.join(PWD, "dist", "package.json"),
+  filePath,
   JSON.stringify(updatedPackageJson, undefined, 2),
   "utf8"
 );
