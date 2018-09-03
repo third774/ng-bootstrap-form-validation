@@ -1,25 +1,43 @@
-import { NgModule, ModuleWithProviders } from "@angular/core";
-import { ErrorMessage } from "./Models";
-import { ErrorMessageService } from "./Services";
-import { CUSTOM_ERROR_MESSAGES } from "./Tokens/tokens";
 import { CommonModule } from "@angular/common";
-import { FormGroupComponent, MessagesComponent } from "./Components";
-import { FormValidationDirective } from "./Directives";
+import { NgModule, ModuleWithProviders } from "@angular/core";
+import { FormValidationDirective } from "./Directives/form-validation.directive";
+import { MessagesComponent } from "./Components/messages/messages.component";
+import { ErrorMessageService } from "./Services/error-message.service";
+import { CUSTOM_ERROR_MESSAGES, BOOTSTRAP_VERSION } from "./Tokens/tokens";
+import { BootstrapVersion } from "./Enums/BootstrapVersion";
+import { FormGroupComponent } from "./Components/form-group";
+import { NgBootstrapFormValidationModuleOptions } from "./Models/NgBootstrapFormValidationModuleOptions";
+import { FormControlDirective } from "./Directives/form-control.directive";
+
+const OPTIONS_DEFAULTS: NgBootstrapFormValidationModuleOptions = {
+  customErrorMessages: [],
+  bootstrapVersion: BootstrapVersion.Four
+};
 
 @NgModule({
-  imports: [CommonModule],
   declarations: [
+    FormValidationDirective,
     FormGroupComponent,
     MessagesComponent,
-    FormValidationDirective
+    FormControlDirective
   ],
-  exports: [FormValidationDirective, FormGroupComponent, MessagesComponent]
+  imports: [CommonModule],
+  exports: [
+    FormValidationDirective,
+    FormGroupComponent,
+    MessagesComponent,
+    FormControlDirective
+  ]
 })
 export class NgBootstrapFormValidationModule {
   static forRoot(
-    customErrorMessages: ErrorMessage[] = []
+    userOptions?: NgBootstrapFormValidationModuleOptions
   ): ModuleWithProviders {
-    if (customErrorMessages.length) {
+    const mergedOptions = {
+      ...OPTIONS_DEFAULTS,
+      ...userOptions
+    };
+    if (mergedOptions.customErrorMessages.length) {
       console.warn(
         "Deprecation warning: Passing 'customErrorMessages' to " +
           "the 'forRoot' method is deprecated and will be removed in a future " +
@@ -34,8 +52,12 @@ export class NgBootstrapFormValidationModule {
         ErrorMessageService,
         {
           provide: CUSTOM_ERROR_MESSAGES,
-          useValue: customErrorMessages,
+          useValue: mergedOptions.customErrorMessages,
           multi: true
+        },
+        {
+          provide: BOOTSTRAP_VERSION,
+          useValue: mergedOptions.bootstrapVersion
         }
       ]
     };
