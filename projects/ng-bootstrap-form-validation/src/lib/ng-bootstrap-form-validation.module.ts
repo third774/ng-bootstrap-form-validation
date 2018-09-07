@@ -9,19 +9,14 @@ import { FormGroupComponent } from "./Components/form-group";
 import { NgBootstrapFormValidationModuleOptions } from "./Models/NgBootstrapFormValidationModuleOptions";
 import { FormControlDirective } from "./Directives/form-control.directive";
 
-const OPTIONS_DEFAULTS: NgBootstrapFormValidationModuleOptions = {
-  customErrorMessages: [],
-  bootstrapVersion: BootstrapVersion.Four
-};
-
 @NgModule({
+  imports: [CommonModule],
   declarations: [
     FormValidationDirective,
     FormGroupComponent,
     MessagesComponent,
     FormControlDirective
   ],
-  imports: [CommonModule],
   exports: [
     FormValidationDirective,
     FormGroupComponent,
@@ -31,34 +26,23 @@ const OPTIONS_DEFAULTS: NgBootstrapFormValidationModuleOptions = {
 })
 export class NgBootstrapFormValidationModule {
   static forRoot(
-    userOptions?: NgBootstrapFormValidationModuleOptions
-  ): ModuleWithProviders {
-    const mergedOptions = {
-      ...OPTIONS_DEFAULTS,
-      ...userOptions
-    };
-    if (mergedOptions.customErrorMessages.length) {
-      console.warn(
-        "Deprecation warning: Passing 'customErrorMessages' to " +
-          "the 'forRoot' method is deprecated and will be removed in a future " +
-          "release. Please use the 'CUSTOM_ERROR_MESSAGES' multi-provider, see: " +
-          "https://github.com/third774/ng-bootstrap-form-validation#module-level-custom-errors"
-      );
+    userOptions: NgBootstrapFormValidationModuleOptions = {
+      bootstrapVersion: BootstrapVersion.Four
     }
-
+  ): ModuleWithProviders {
     return {
       ngModule: NgBootstrapFormValidationModule,
       providers: [
-        ErrorMessageService,
         {
           provide: CUSTOM_ERROR_MESSAGES,
-          useValue: mergedOptions.customErrorMessages,
+          useValue: userOptions.customErrorMessages,
           multi: true
         },
         {
           provide: BOOTSTRAP_VERSION,
-          useValue: mergedOptions.bootstrapVersion
-        }
+          useValue: userOptions.bootstrapVersion
+        },
+        ErrorMessageService
       ]
     };
   }
