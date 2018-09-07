@@ -5,6 +5,7 @@
 export { ErrorMessage, FormatErrorFunction } from "./lib/Models";
 export { FormValidationDirective } from "./lib/Directives";
 export { FormGroupComponent, MessagesComponent } from "./lib/Components";
+export { BootstrapVersion } from "./lib/Enums/BootstrapVersion";
 export * from "./lib/Tokens/tokens";
 export {
   NgBootstrapFormValidationModule
