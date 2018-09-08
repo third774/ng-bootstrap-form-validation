@@ -57,7 +57,7 @@ export class FormControlDirective implements OnInit {
   }
 
   get control(): FormControl {
-    return this.formDirective.getControl(this);
+    return this.formDirective && this.formDirective.getControl(this);
   }
 
   get formDirective(): any {
