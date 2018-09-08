@@ -35,7 +35,7 @@ export class NgBootstrapFormValidationModule {
       providers: [
         {
           provide: CUSTOM_ERROR_MESSAGES,
-          useValue: userOptions.customErrorMessages,
+          useValue: userOptions.customErrorMessages || [],
           multi: true
         },
         {
