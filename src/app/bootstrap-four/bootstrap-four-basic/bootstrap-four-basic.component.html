@@ -29,6 +29,19 @@
       <input formControlName="zip" type="text" class="form-control" id="validationCustom05" placeholder="Zip" required>
     </div>
   </div>
+  <ng-container formGroupName="phoneNumbers">
+    <div class="form-row" *ngFor="let control of this.formGroup.get('phoneNumbers').controls; let i = index" [formGroupName]="i">
+      <div class="col-12 mb-2">Phone Numbers</div>
+      <div class="col-md-6 mb-3 form-group">
+        <label for="validationCustom06">Type</label>
+        <input formControlName="type" type="text" class="form-control" id="validationCustom06" placeholder="Cell" required>
+      </div>
+      <div class="col-md-6 mb-3 form-group">
+        <label for="validationCustom07">Number</label>
+        <input formControlName="number" type="text" class="form-control" id="validationCustom07" placeholder="555-555-5555" required>
+      </div>
+    </div>
+  </ng-container>
   <div class="form-group">
     <div class="form-check">
       <input formControlName="agreeToTerms" class="form-check-input" type="checkbox" value="" id="invalidCheck" required>

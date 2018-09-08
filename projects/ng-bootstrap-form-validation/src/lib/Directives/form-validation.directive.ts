@@ -5,7 +5,12 @@ import {
   Output,
   HostListener
 } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import {
+  AbstractControl,
+  FormArray,
+  FormControl,
+  FormGroup
+} from "@angular/forms";
 
 @Directive({
   // tslint:disable-next-line:directive-selector
@@ -25,16 +30,17 @@ export class FormValidationDirective {
     }
   }
 
-  markAsTouchedAndDirty(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(key => {
-      const control = formGroup.controls[key];
-      if (control instanceof FormGroup) {
-        this.markAsTouchedAndDirty(control as FormGroup);
-      } else if (control.enabled) {
-        control.markAsDirty();
-        control.markAsTouched();
-        control.updateValueAndValidity();
-      }
-    });
+  markAsTouchedAndDirty(control: AbstractControl) {
+    if (control instanceof FormGroup) {
+      Object.keys(control.controls).forEach(key =>
+        this.markAsTouchedAndDirty(control.controls[key])
+      );
+    } else if (control instanceof FormArray) {
+      control.controls.forEach(c => this.markAsTouchedAndDirty(c));
+    } else if (control instanceof FormControl && control.enabled) {
+      control.markAsDirty();
+      control.markAsTouched();
+      control.updateValueAndValidity();
+    }
   }
 }

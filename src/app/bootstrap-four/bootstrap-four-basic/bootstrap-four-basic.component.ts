@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormGroup, FormControl, Validators, FormArray } from "@angular/forms";
 
 @Component({
   selector: "app-bootstrap-four-basic",
@@ -14,6 +14,12 @@ export class BootstrapFourBasicComponent implements OnInit {
     city: new FormControl("", Validators.required),
     state: new FormControl("", Validators.required),
     zip: new FormControl("", Validators.required),
+    phoneNumbers: new FormArray([
+      new FormGroup({
+        type: new FormControl("", Validators.required),
+        number: new FormControl("", Validators.required)
+      })
+    ]),
     agreeToTerms: new FormControl(false, Validators.required),
     bestPet: new FormControl(null, Validators.required)
   });
