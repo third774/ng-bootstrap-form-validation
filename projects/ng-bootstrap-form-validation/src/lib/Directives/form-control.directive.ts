@@ -5,7 +5,6 @@ import {
   Optional,
   Host,
   SkipSelf,
-  OnInit,
   Inject
 } from "@angular/core";
 import { ControlContainer, FormControl } from "@angular/forms";
@@ -21,7 +20,7 @@ export function controlPath(name: string, parent: ControlContainer): string[] {
   // tslint:disable-next-line:directive-selector
   selector: ".form-control,.form-check-input,.custom-control-input"
 })
-export class FormControlDirective implements OnInit {
+export class FormControlDirective {
   @Input()
   formControlName: string;
   @Input()
@@ -69,12 +68,12 @@ export class FormControlDirective implements OnInit {
   }
 
   constructor(
+    // this value might be null, but we union type it as such until
+    // this issue is resolved: https://github.com/angular/angular/issues/25544
     @Optional()
     @Host()
     @SkipSelf()
-    private parent: ControlContainer | null,
+    private parent: ControlContainer,
     @Inject(BOOTSTRAP_VERSION) private bootstrapVersion: BootstrapVersion
   ) {}
-
-  ngOnInit() {}
 }
