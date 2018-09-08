@@ -1,4 +1,4 @@
-import { ErrorMessage } from "./Models";
+import { ErrorMessage } from "./Models/error-message";
 
 export const DEFAULT_ERRORS: ErrorMessage[] = [
   {

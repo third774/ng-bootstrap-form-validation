@@ -1,7 +1,7 @@
 import { Injectable, Inject } from "@angular/core";
 import { DEFAULT_ERRORS } from "../default-errors";
-import { ErrorMessage } from "../Models";
 import { CUSTOM_ERROR_MESSAGES } from "../Tokens/tokens";
+import { ErrorMessage } from "../Models/error-message";
 
 @Injectable({
   providedIn: "root"

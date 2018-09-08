@@ -5,7 +5,7 @@ import { MessagesComponent } from "./Components/messages/messages.component";
 import { ErrorMessageService } from "./Services/error-message.service";
 import { CUSTOM_ERROR_MESSAGES, BOOTSTRAP_VERSION } from "./Tokens/tokens";
 import { BootstrapVersion } from "./Enums/BootstrapVersion";
-import { FormGroupComponent } from "./Components/form-group";
+import { FormGroupComponent } from "./Components/form-group/form-group.component";
 import { NgBootstrapFormValidationModuleOptions } from "./Models/NgBootstrapFormValidationModuleOptions";
 import { FormControlDirective } from "./Directives/form-control.directive";
 

@@ -12,7 +12,7 @@ import {
 import { FormControlName } from "@angular/forms";
 import { ErrorMessageService } from "../../Services/error-message.service";
 import { MessagesComponent } from "../messages/messages.component";
-import { ErrorMessage } from "../../Models";
+import { ErrorMessage } from "../../Models/error-message";
 
 @Component({
   // tslint:disable:component-selector
