@@ -72,7 +72,7 @@ export class FormControlDirective implements OnInit {
     @Optional()
     @Host()
     @SkipSelf()
-    private parent: ControlContainer,
+    private parent: ControlContainer | null,
     @Inject(BOOTSTRAP_VERSION) private bootstrapVersion: BootstrapVersion
   ) {}
 
