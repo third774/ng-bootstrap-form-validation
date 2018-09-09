@@ -2,7 +2,7 @@ language: node_js
 node_js:
 - 8.9.1
 script: ng build --project ng-bootstrap-form-validation
-before_deploy: node ./scripts/updateVersion && node ./scripts/copyReadme && cd dist/ng-bootstrap-form-validation
+before_deploy: node ./scripts/beforeDeploy && cd dist/ng-bootstrap-form-validation
 deploy:
   - provider: npm
     skip_cleanup: true

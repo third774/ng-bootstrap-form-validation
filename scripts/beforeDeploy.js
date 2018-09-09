@@ -1,0 +1,2 @@
+require("./copyReadme");
+require("./updatePackageJson");
