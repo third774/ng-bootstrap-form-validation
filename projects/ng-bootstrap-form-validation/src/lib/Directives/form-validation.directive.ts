@@ -11,6 +11,7 @@ import {
   FormControl,
   FormGroup
 } from "@angular/forms";
+import { take } from "rxjs/operators";
 
 @Directive({
   // tslint:disable-next-line:directive-selector
@@ -25,9 +26,14 @@ export class FormValidationDirective {
   @HostListener("submit")
   onSubmit() {
     this.markAsTouchedAndDirty(this.formGroup);
-    if (this.formGroup.valid) {
-      this.validSubmit.emit(this.formGroup.value);
-    }
+    this.formGroup.statusChanges
+      .pipe(take(1))
+      .toPromise()
+      .then(result => {
+        if (result === "VALID") {
+          this.validSubmit.emit(this.formGroup.value);
+        }
+      });
   }
 
   markAsTouchedAndDirty(control: AbstractControl) {
