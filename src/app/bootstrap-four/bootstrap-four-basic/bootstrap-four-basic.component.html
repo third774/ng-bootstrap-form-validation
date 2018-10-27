@@ -30,7 +30,7 @@
     </div>
   </div>
   <ng-container formGroupName="phoneNumbers">
-    <div class="form-row" *ngFor="let control of this.formGroup.get('phoneNumbers').controls; let i = index" [formGroupName]="i">
+    <div class="form-row" *ngFor="let control of this.formGroup.get('phoneNumbers')['controls']; let i = index" [formGroupName]="i">
       <div class="col-12 mb-2">Phone Numbers</div>
       <div class="col-md-6 mb-3 form-group">
         <label for="validationCustom06">Type</label>

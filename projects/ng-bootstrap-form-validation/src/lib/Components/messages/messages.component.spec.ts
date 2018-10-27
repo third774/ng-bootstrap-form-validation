@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { MessagesComponent } from "./messages.component";
+import { BootstrapVersion } from "../../Enums/BootstrapVersion";
+import { BOOTSTRAP_VERSION } from "../../Tokens/tokens";
 
 describe("MessagesComponent", () => {
   let component: MessagesComponent;
@@ -8,7 +10,13 @@ describe("MessagesComponent", () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MessagesComponent]
+      declarations: [MessagesComponent],
+      providers: [
+        {
+          provide: BOOTSTRAP_VERSION,
+          useValue: BootstrapVersion.Three
+        }
+      ]
     }).compileComponents();
   }));
 
