@@ -14,7 +14,7 @@ import {
 
 @Directive({
   // tslint:disable-next-line:directive-selector
-  selector: "[formGroup]"
+  selector: "[formGroup]",
   exportAs: 'ngFormValidator'
 })
 export class FormValidationDirective {
