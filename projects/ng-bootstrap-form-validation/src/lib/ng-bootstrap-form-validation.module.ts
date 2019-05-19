@@ -3,7 +3,11 @@ import { NgModule, ModuleWithProviders } from "@angular/core";
 import { FormValidationDirective } from "./Directives/form-validation.directive";
 import { MessagesComponent } from "./Components/messages/messages.component";
 import { ErrorMessageService } from "./Services/error-message.service";
-import { CUSTOM_ERROR_MESSAGES, BOOTSTRAP_VERSION } from "./Tokens/tokens";
+import {
+  ADD_SUCCESS_CLASS,
+  CUSTOM_ERROR_MESSAGES,
+  BOOTSTRAP_VERSION
+} from "./Tokens/tokens";
 import { BootstrapVersion } from "./Enums/BootstrapVersion";
 import { FormGroupComponent } from "./Components/form-group/form-group.component";
 import { NgBootstrapFormValidationModuleOptions } from "./Models/NgBootstrapFormValidationModuleOptions";
@@ -33,6 +37,10 @@ export class NgBootstrapFormValidationModule {
     return {
       ngModule: NgBootstrapFormValidationModule,
       providers: [
+        {
+          provide: ADD_SUCCESS_CLASS,
+          useValue: userOptions.addSuccessClass || true
+        },
         {
           provide: CUSTOM_ERROR_MESSAGES,
           useValue: userOptions.customErrorMessages || [],
