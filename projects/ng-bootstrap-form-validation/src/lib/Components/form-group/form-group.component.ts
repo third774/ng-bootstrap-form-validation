@@ -14,7 +14,7 @@ import { FormControlName } from "@angular/forms";
 import { ErrorMessageService } from "../../Services/error-message.service";
 import { MessagesComponent } from "../messages/messages.component";
 import { ErrorMessage } from "../../Models/error-message";
-import { ADD_SUCCESS_CLASS } from "../../Tokens/tokens";
+import { DISABLE_SUCCESS_STATE } from "../../Tokens/tokens";
 
 @Component({
   // tslint:disable:component-selector
@@ -47,7 +47,8 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
     return (
       !this.FormControlNames.some(c => !c.valid) &&
       this.FormControlNames.some(c => c.dirty && c.touched) &&
-      (!this.validationDisabled || this.addSuccessClass)
+      !this.validationDisabled &&
+      !this.disableSuccessState
     );
   }
 
@@ -61,7 +62,7 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
   constructor(
     private elRef: ElementRef,
     private errorMessageService: ErrorMessageService,
-    @Inject(ADD_SUCCESS_CLASS) private addSuccessClass: boolean
+    @Inject(DISABLE_SUCCESS_STATE) private disableSuccessState: boolean
   ) {}
 
   ngAfterContentInit() {

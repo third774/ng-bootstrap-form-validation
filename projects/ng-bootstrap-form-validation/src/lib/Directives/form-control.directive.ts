@@ -9,7 +9,7 @@ import {
 } from "@angular/core";
 import { ControlContainer, FormControl } from "@angular/forms";
 import { BootstrapVersion } from "../Enums/BootstrapVersion";
-import { ADD_SUCCESS_CLASS, BOOTSTRAP_VERSION } from "../Tokens/tokens";
+import { DISABLE_SUCCESS_STATE, BOOTSTRAP_VERSION } from "../Tokens/tokens";
 
 export function controlPath(name: string, parent: ControlContainer): string[] {
   // tslint:disable-next-line:no-non-null-assertion
@@ -35,7 +35,7 @@ export class FormControlDirective {
       this.bootstrapFour &&
       this.control.valid &&
       (this.control.touched || this.control.dirty) &&
-      this.addSuccessClass
+      !this.disableSuccessState
     );
   }
 
@@ -75,7 +75,7 @@ export class FormControlDirective {
     @Host()
     @SkipSelf()
     private parent: ControlContainer,
-    @Inject(ADD_SUCCESS_CLASS) private addSuccessClass: boolean,
+    @Inject(DISABLE_SUCCESS_STATE) private disableSuccessState: boolean,
     @Inject(BOOTSTRAP_VERSION) private bootstrapVersion: BootstrapVersion
   ) {}
 }

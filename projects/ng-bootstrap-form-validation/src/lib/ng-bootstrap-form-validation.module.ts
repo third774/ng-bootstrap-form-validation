@@ -4,7 +4,7 @@ import { FormValidationDirective } from "./Directives/form-validation.directive"
 import { MessagesComponent } from "./Components/messages/messages.component";
 import { ErrorMessageService } from "./Services/error-message.service";
 import {
-  ADD_SUCCESS_CLASS,
+  DISABLE_SUCCESS_STATE,
   CUSTOM_ERROR_MESSAGES,
   BOOTSTRAP_VERSION
 } from "./Tokens/tokens";
@@ -38,8 +38,8 @@ export class NgBootstrapFormValidationModule {
       ngModule: NgBootstrapFormValidationModule,
       providers: [
         {
-          provide: ADD_SUCCESS_CLASS,
-          useValue: userOptions.addSuccessClass || true
+          provide: DISABLE_SUCCESS_STATE,
+          useValue: userOptions.disableSuccessState || false
         },
         {
           provide: CUSTOM_ERROR_MESSAGES,
