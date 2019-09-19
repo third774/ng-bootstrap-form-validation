@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
 import { FormGroupComponent } from "./form-group.component";
 import { MockComponent } from "ng2-mock-component";
-import { ErrorMessageService } from "../../Services";
+import { ErrorMessageService } from "../../Services/error-message.service";
 import { CUSTOM_ERROR_MESSAGES } from "../../Tokens/tokens";
 
 describe("FormGroupComponent", () => {
