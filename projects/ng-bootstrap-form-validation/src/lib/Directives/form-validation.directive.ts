@@ -11,6 +11,8 @@ import {
   FormControl,
   FormGroup
 } from "@angular/forms";
+import {Subject} from 'rxjs';
+import {filter, startWith, switchMap, take, tap} from 'rxjs/operators';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
@@ -21,13 +23,16 @@ export class FormValidationDirective {
   formGroup: FormGroup;
   @Output()
   validSubmit = new EventEmitter<any>();
+  formSubmitSubject$: Subject<any>;
+
+  constructor() {
+    this.checkSubmit();
+  }
 
   @HostListener("submit")
   onSubmit() {
     this.markAsTouchedAndDirty(this.formGroup);
-    if (this.formGroup.valid) {
-      this.validSubmit.emit(this.formGroup.value);
-    }
+    this.formSubmitSubject$.next();
   }
 
   markAsTouchedAndDirty(control: AbstractControl) {
@@ -41,6 +46,30 @@ export class FormValidationDirective {
       control.markAsDirty();
       control.markAsTouched();
       control.updateValueAndValidity();
+    }
+  }
+
+  checkSubmit() {
+    this.formSubmitSubject$ = new Subject();
+
+    this.formSubmitSubject$
+      .pipe(
+        tap(() => this.formGroup.markAsDirty()),
+        switchMap(() =>
+          this.formGroup.statusChanges.pipe(
+            startWith(this.formGroup.status),
+            filter(status => status !== 'PENDING'),
+            take(1)
+          )
+        ),
+        filter(status => status === 'VALID')
+      )
+      .subscribe(() => this.submitForm());
+  }
+
+  submitForm() {
+    if (this.formGroup.valid) {
+      this.validSubmit.emit(this.formGroup.value);
     }
   }
 }
