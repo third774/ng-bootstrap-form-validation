@@ -49,7 +49,7 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
     );
   }
 
-  @ContentChild(MessagesComponent, { static: false })
+  @ContentChild(MessagesComponent)
   public messagesBlock: MessagesComponent;
 
   private errorMessages: ErrorMessage[];
