@@ -3,6 +3,7 @@
  */
 
 export { ErrorMessage, FormatErrorFunction } from "./lib/Models/error-message";
+export { FormControlDirective } from "./lib/Directives/form-control.directive";
 export {
   FormValidationDirective
 } from "./lib/Directives/form-validation.directive";
