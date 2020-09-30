@@ -29,7 +29,7 @@ export class NgBootstrapFormValidationModule {
     userOptions: NgBootstrapFormValidationModuleOptions = {
       bootstrapVersion: BootstrapVersion.Four
     }
-  ): ModuleWithProviders {
+  ): ModuleWithProviders<NgBootstrapFormValidationModule> {
     return {
       ngModule: NgBootstrapFormValidationModule,
       providers: [
