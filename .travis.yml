@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - 10.16.3
-script: ng build --project ng-bootstrap-form-validation
+script: ng build --prod --project ng-bootstrap-form-validation
 before_deploy: node ./scripts/beforeDeploy && cd dist/ng-bootstrap-form-validation
 deploy:
   - provider: npm
