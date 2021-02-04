@@ -23,7 +23,7 @@ import { ErrorMessage } from "../../Models/error-message";
   `
 })
 export class FormGroupComponent implements OnInit, AfterContentInit {
-  @ContentChildren(FormControlName)
+  @ContentChildren(FormControlName, {descendants: true})
   FormControlNames: QueryList<FormControlName>;
 
   @Input()
