@@ -5,7 +5,9 @@ import { BOOTSTRAP_VERSION } from "../../Tokens/tokens";
 @Component({
   selector: "bfv-messages",
   template: `
-    <span [ngClass]="className" *ngFor="let message of messages()">{{message}}</span>
+    <span [ngClass]="className" *ngFor="let message of messages()">{{
+      message
+    }}</span>
   `,
   styles: [
     `
