@@ -9,7 +9,7 @@ import {
   OnInit,
   AfterContentInit
 } from "@angular/core";
-import { FormControlName } from "@angular/forms";
+import { FormControl, FormControlName } from "@angular/forms";
 import { ErrorMessageService } from "../../Services/error-message.service";
 import { MessagesComponent } from "../messages/messages.component";
 import { ErrorMessage } from "../../Models/error-message";
@@ -26,6 +26,9 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
   @ContentChildren(FormControlName, {descendants: true})
   FormControlNames: QueryList<FormControlName>;
 
+  @ContentChildren(FormControl)
+  FormControls: QueryList<FormControl>;
+
   @Input()
   customErrorMessages: ErrorMessage[] = [];
 
@@ -35,17 +38,20 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
   @HostBinding("class.has-error")
   get hasErrors() {
     return (
-      this.FormControlNames.some(c => !c.valid && c.dirty && c.touched) &&
-      !this.validationDisabled
+      !this.validationDisabled &&
+      (this.FormControlNames.some(c => !c.valid && c.dirty && c.touched) ||
+        this.FormControls.some(c => !c.valid && c.dirty && c.touched))
     );
   }
 
   @HostBinding("class.has-success")
   get hasSuccess() {
     return (
-      !this.FormControlNames.some(c => !c.valid) &&
-      this.FormControlNames.some(c => c.dirty && c.touched) &&
-      !this.validationDisabled
+      !this.validationDisabled &&
+      (!this.FormControlNames.some(c => !c.valid) ||
+        !this.FormControls.some(c => !c.valid)) &&
+      (this.FormControlNames.some(c => c.dirty && c.touched) ||
+        this.FormControls.some(c => c.dirty && c.touched))
     );
   }
 
@@ -79,7 +85,10 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
   }
 
   get isDirtyAndTouched() {
-    return this.FormControlNames.some(c => c.dirty && c.touched);
+    return (
+      this.FormControlNames.some(c => c.dirty && c.touched) ||
+      this.FormControls.some(c => c.dirty && c.touched)
+    );
   }
 
   private getMessages(): string[] {
@@ -90,13 +99,20 @@ export class FormGroupComponent implements OnInit, AfterContentInit {
 
     const names = this.FormControlNames.map(f => f.name);
 
-    this.FormControlNames.filter(
+    const formControlNames = this.FormControlNames.filter(
       (c, i) =>
         !c.valid &&
         !!c.errors &&
         // filter out FormControlNames that share the same name - usually for radio buttons
         names.indexOf(c.name) === i
-    ).forEach(control => {
+    );
+
+    const formControls = this.FormControls.filter(
+      c =>
+        !c.valid && !!c.errors && !formControlNames.some(cn => cn.control === c)
+    );
+
+    [...formControlNames, ...formControls].forEach(control => {
       Object.keys(control.errors).forEach(key => {
         const error = this.errorMessages.find(err => err.error === key);
         if (!error) {
