@@ -1,5 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, Validators, FormControl } from "@angular/forms";
+import {
+  FormGroup,
+  Validators,
+  FormControl,
+  AbstractControl
+} from "@angular/forms";
+import { of } from "rxjs";
+import { delay, map } from "rxjs/operators";
 
 @Component({
   selector: "app-default-errors-demo",
@@ -12,7 +19,8 @@ export class DefaultErrorsDemoComponent implements OnInit {
     requiredField: new FormControl("", Validators.required),
     pattern: new FormControl("", Validators.pattern(/foobar/)),
     minValue: new FormControl(0, Validators.min(10)),
-    maxValue: new FormControl(10, Validators.max(5))
+    maxValue: new FormControl(10, Validators.max(5)),
+    async: new FormControl(10, null, this.asyncValidator.bind(this))
   });
 
   constructor() {}
@@ -28,5 +36,13 @@ export class DefaultErrorsDemoComponent implements OnInit {
       minValue: 0,
       maxValue: 10
     });
+  }
+
+  asyncValidator(control: AbstractControl) {
+    const valid = control.value > 10;
+    return of(valid).pipe(
+      delay(500),
+      map(result => (result ? null : { asyncValidation: true }))
+    );
   }
 }

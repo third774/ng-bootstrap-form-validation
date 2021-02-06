@@ -40,7 +40,10 @@ export class FormValidationDirective {
     } else if (control instanceof FormControl && control.enabled) {
       control.markAsDirty();
       control.markAsTouched();
-      control.updateValueAndValidity();
+      if (!control.asyncValidator) {
+        // no reason to recheck async validators
+        control.updateValueAndValidity();
+      }
     }
   }
 }
