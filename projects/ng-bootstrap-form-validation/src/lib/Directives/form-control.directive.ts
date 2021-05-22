@@ -1,3 +1,9 @@
+/*
+ * @Author: Zhenxiang Chen
+ * @Date:   2021-05-22 18:15:39
+ * @Last Modified by:   Zhenxiang Chen
+ * @Last Modified time: 2021-05-22 18:15:39
+ */
 import {
   Directive,
   Input,
@@ -28,7 +34,7 @@ export class FormControlDirective {
   @Input()
   showValid = true;
   @Input()
-  showValidWhenEmpty = true;
+  showValidWhenEmpty = false;
 
   @HostBinding("class.is-valid")
   get validClass() {
