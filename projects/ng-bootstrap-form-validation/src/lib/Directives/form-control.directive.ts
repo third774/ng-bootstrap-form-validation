@@ -1,3 +1,9 @@
+/*
+ * @Author: Zhenxiang Chen
+ * @Date:   2021-05-22 18:15:39
+ * @Last Modified by:   Zhenxiang Chen
+ * @Last Modified time: 2021-05-22 18:15:39
+ */
 import {
   Directive,
   Input,
@@ -25,13 +31,20 @@ export class FormControlDirective {
   formControlName: string;
   @Input()
   formControl: string;
+  @Input()
+  showValid = true;
+  @Input()
+  showValidWhenEmpty = false;
 
   @HostBinding("class.is-valid")
   get validClass() {
-    if (!this.control) {
+    if (!this.control || !this.showValid) {
       return false;
     }
     return (
+      (this.showValidWhenEmpty
+        ? true
+        : this.control.value != null && this.control.value != "") &&
       this.bootstrapFour &&
       this.control.valid &&
       (this.control.touched || this.control.dirty)
